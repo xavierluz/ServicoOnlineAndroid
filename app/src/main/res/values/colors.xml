@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#5b0e49</color>
+    <color name="colorPrimaryDark">#de002c</color>
+    <color name="colorAccent">#5b0e49</color>
+    <color name="primary_material_light">#344955</color>
+    <color name="colorBackgroundFundo">#ffffff</color>
+    <color name="colorTextoPrimary">#efe9e9</color>
+    <color name="colorBackgroundPrimary">#d2dadf</color>
+    <color name="colorBackground_ligth">#ffffff</color>
+    <color name="colorTituloPrimary">#4e083a</color>
+    <color name="colorFundoServico">#8b1e6c</color>
+    <color name="colorLinhaServico">#e6dede</color>
+</resources>
