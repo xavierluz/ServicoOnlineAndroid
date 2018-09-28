@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".ServicosActivity">
+    <item android:id="@+id/mail"
+        android:icon="@drawable/baseline_email_black_18dp"
+        android:title="@string/email_menu" />
+    <item android:id="@+id/upload"
+        android:icon="@drawable/baseline_cloud_upload_black_18dp"
+        android:title="@string/upload_menu"
+        app:showAsAction="ifRoom" />
+    <item android:id="@+id/share"
+        android:icon="@drawable/baseline_folder_shared_black_18dp"
+        android:title="@string/share_menu" />
+    <item
+        android:id="@+id/menuNovoServico"
+        android:icon="@drawable/baseline_open_in_new_black_18dp"
+        app:showAsAction="ifRoom"
+        android:title="Novo Serviço">
+    </item>
+</menu>

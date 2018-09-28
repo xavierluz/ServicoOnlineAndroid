@@ -3,7 +3,6 @@ package com.xavierluz.servicoonline;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Context;
-import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -77,7 +76,7 @@ public class SingInActivity extends AppCompatActivity {
             RecyclerView.ViewHolder viewHolder
                     = recyclerView.findViewHolderForPosition(selectedItemPosition);
             TextView textViewName
-                    = (TextView) viewHolder.itemView.findViewById(R.id.textViewName);
+                    = (TextView) viewHolder.itemView.findViewById(R.id.textServicoName);
             String selectedName = (String) textViewName.getText();
             int selectedItemId = -1;
             for (int i = 0; i < MyData.servicoArray.length; i++) {

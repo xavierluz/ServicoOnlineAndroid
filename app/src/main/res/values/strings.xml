@@ -27,7 +27,9 @@
     <string name="title_activity_custom_view_icon_text_tabs">Custom View Icon &amp; Text</string>
     <string name="title_activity_pinned_top_tabs">Pin Top Tabs</string>
     <string name="title_activity_main2">Main2Activity</string>
-
+    <string name="email_menu">E-Mail</string>
+    <string name="upload_menu">Upload</string>
+    <string name="share_menu">Compartilhar</string>
     <string name="hello_world">Hello world!</string>
 
 </resources>

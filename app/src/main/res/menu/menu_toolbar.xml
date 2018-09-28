@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".ServicosActivity">
+    <item
+        android:id="@+id/menuNovoServico"
+        android:icon="@drawable/baseline_open_in_new_black_18dp"
+        app:showAsAction="ifRoom"
+        android:title="Novo Serviço">
+    </item>
+
+</menu>

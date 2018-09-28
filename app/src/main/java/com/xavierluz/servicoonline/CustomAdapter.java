@@ -14,15 +14,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView textViewName;
-        TextView textViewVersion;
+        TextView textServicoName;
+        TextView textSlogan;
         ImageView imageViewIcon;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            this.textViewName = (TextView) itemView.findViewById(R.id.textViewName);
-            this.textViewVersion = (TextView) itemView.findViewById(R.id.textViewVersion);
-            this.imageViewIcon = (ImageView) itemView.findViewById(R.id.imageView);
+            this.textServicoName = (TextView) itemView.findViewById(R.id.textServicoName);
+            this.textSlogan = (TextView) itemView.findViewById(R.id.textSlogan);
+            //this.imageViewIcon = (ImageView) itemView.findViewById(R.id.imageView);
         }
     }
 
@@ -46,13 +46,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int listPosition) {
 
-        TextView textViewName = holder.textViewName;
-        TextView textViewVersion = holder.textViewVersion;
-        ImageView imageView = holder.imageViewIcon;
+        TextView textViewName = holder.textServicoName;
+        TextView textViewVersion = holder.textSlogan;
+        //ImageView imageView = holder.imageViewIcon;
 
-        textViewName.setText(dataSet.get(listPosition).getName());
-        textViewVersion.setText(dataSet.get(listPosition).getVersion());
-        imageView.setImageResource(dataSet.get(listPosition).getImage());
+        textViewName.setText(dataSet.get(listPosition).getNomeServico());
+        textViewVersion.setText(dataSet.get(listPosition).getSloganServico());
+        //imageView.setImageResource(dataSet.get(listPosition).getImage());
     }
 
     @Override
