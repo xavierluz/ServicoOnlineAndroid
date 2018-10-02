@@ -1,5 +1,6 @@
 <resources>
     <color name="colorPrimary">#5b0e49</color>
+    <color name="colorSecundary">#9e71125b</color>
     <color name="colorPrimaryDark">#de002c</color>
     <color name="colorAccent">#5b0e49</color>
     <color name="primary_material_light">#344955</color>
@@ -10,5 +11,6 @@
     <color name="colorTituloPrimary">#4e083a</color>
     <color name="colorFundoServico">#8b1e6c</color>
     <color name="colorLinhaServico">#e6dede</color>
+    <color name="colorLinhaServicoPrimary">#4e083a</color>
 </resources>
 

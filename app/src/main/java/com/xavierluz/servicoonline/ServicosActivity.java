@@ -10,9 +10,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.xavierluz.servicoonline.fragments.OneFragment;
+import com.xavierluz.servicoonline.fragments.PrestadosActivity;
 import com.xavierluz.servicoonline.fragments.ThreeFragment;
 import com.xavierluz.servicoonline.fragments.TwoFragment;
 
@@ -24,6 +28,7 @@ public class ServicosActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private ScrollView scrollView;
     private int[] tabIcons = {
             R.drawable.baseline_add_box_black_18dp,
             R.drawable.baseline_ballot_black_18dp,
@@ -40,10 +45,46 @@ public class ServicosActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
+        viewPager.getParent().requestDisallowInterceptTouchEvent(true);
+        scrollView =(ScrollView)  findViewById(R.id.scrollView);
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         setupTabIcons();
+        viewPager.setOnTouchListener(new View.OnTouchListener() {
+
+            int dragthreshold = 30;
+            int downX;
+            int downY;
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        downX = (int) event.getRawX();
+                        downY = (int) event.getRawY();
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        int distanceX = Math.abs((int) event.getRawX() - downX);
+                        int distanceY = Math.abs((int) event.getRawY() - downY);
+
+                        if (distanceY > distanceX && distanceY > dragthreshold) {
+                            viewPager.getParent().requestDisallowInterceptTouchEvent(false);
+                            scrollView.getParent().requestDisallowInterceptTouchEvent(true);
+                        } else if (distanceX > distanceY && distanceX > dragthreshold) {
+                            viewPager.getParent().requestDisallowInterceptTouchEvent(true);
+                            scrollView.getParent().requestDisallowInterceptTouchEvent(false);
+                        }
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        scrollView.getParent().requestDisallowInterceptTouchEvent(false);
+                        viewPager.getParent().requestDisallowInterceptTouchEvent(false);
+                        break;
+                }
+                return false;
+            }
+        });
 
     }
     private void setupTabIcons() {
@@ -54,7 +95,7 @@ public class ServicosActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new OneFragment(), "Serviços");
-        adapter.addFragment(new TwoFragment(), "Prestados");
+        adapter.addFragment(new PrestadosActivity(), "Prestados");
         adapter.addFragment(new ThreeFragment(), "Fechados");
 
         viewPager.setAdapter(adapter);

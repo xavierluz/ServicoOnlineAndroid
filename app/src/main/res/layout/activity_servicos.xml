@@ -23,14 +23,20 @@
             app:tabGravity="fill"/>
 </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="fill"
-        android:overScrollMode="ifContentScrolls"
-        android:scrollbars="vertical"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:tabGravity="fill" />
+        android:clipToPadding="true"
+        android:fillViewport="true"
+        android:scrollbarStyle="outsideOverlay">
 
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="fill"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:tabGravity="fill" />
+    </ScrollView>
 </android.support.design.widget.CoordinatorLayout>

@@ -25,9 +25,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="1dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="8dp"
         android:padding="0dp"
         android:paddingBottom="0dp"
         android:paddingEnd="0dp"
@@ -36,8 +36,8 @@
         android:paddingStart="0dp"
         android:paddingTop="0dp"
         app:cardBackgroundColor="@color/colorFundoServico"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="5dp"
+        app:cardCornerRadius="3dp"
+        app:cardElevation="1dp"
         app:cardUseCompatPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -69,19 +69,27 @@
                     android:text="Android Name"
                     android:textAlignment="center"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@color/colorTextoPrimary" />
+                    android:textColor="@color/colorTextoPrimary"
+                    android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/textSlogan"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorFundoServico">
 
-                    android:layout_margin="3dp"
-                    android:padding="2dp"
-                    android:text="Android Version"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorTextoPrimary" />
+                    <TextView
+                        android:id="@+id/textSlogan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+
+                        android:layout_margin="3dp"
+                        android:padding="2dp"
+                        android:text="Android Version"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimaryDark" />
+                </LinearLayout>
+
 
             </LinearLayout>
         </LinearLayout>
