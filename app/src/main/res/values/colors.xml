@@ -12,5 +12,7 @@
     <color name="colorFundoServico">#8b1e6c</color>
     <color name="colorLinhaServico">#e6dede</color>
     <color name="colorLinhaServicoPrimary">#4e083a</color>
+    <color name="servicoPrestadoFundoStatus">#804674</color>
+    <color name="servicoDescricao">#e9e4dd</color>
 </resources>
 

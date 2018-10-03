@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +51,7 @@ public class PrestadosActivity extends Fragment {
 
 
         List<ServicoPrestado> servicosPrestados = ServicoPrestado.getServicosPrestados();
+        Log.i("Count:", Integer.toString(servicosPrestados.size()));
         this.recycleViewPrestados.setAdapter(new PrestadoAdapter(servicosPrestados,getActivity().getApplicationContext()));
         return view;
     }

@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
+import com.xavierluz.servicoonline.fragments.FechamnetoActivity;
 import com.xavierluz.servicoonline.fragments.OneFragment;
 import com.xavierluz.servicoonline.fragments.PrestadosActivity;
 import com.xavierluz.servicoonline.fragments.ThreeFragment;
@@ -96,7 +97,7 @@ public class ServicosActivity extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new OneFragment(), "Serviços");
         adapter.addFragment(new PrestadosActivity(), "Prestados");
-        adapter.addFragment(new ThreeFragment(), "Fechados");
+        adapter.addFragment(new FechamnetoActivity(), "Fechados");
 
         viewPager.setAdapter(adapter);
     }

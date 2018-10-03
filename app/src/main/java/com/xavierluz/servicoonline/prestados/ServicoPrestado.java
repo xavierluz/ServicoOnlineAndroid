@@ -16,7 +16,7 @@ public class ServicoPrestado {
     private String nomeCliente;
     private double servicoValor;
     private double servicoValorCobrado;
-
+    private String Status;
     public ServicoPrestado() {
     }
 
@@ -67,19 +67,27 @@ public class ServicoPrestado {
     public void setServicoValorCobrado(double servicoValorCobrado) {
         this.servicoValorCobrado = servicoValorCobrado;
     }
+    public String getStatus() {
+        return Status;
+    }
 
+    public void setStatus(String status) {
+        Status = status;
+    }
     public static List<ServicoPrestado> getServicosPrestados(){
-        ServicoPrestado servicoPrestado =  new ServicoPrestado();
+        ServicoPrestado servicoPrestado =  null;
         List<ServicoPrestado> servicosPrestados =  new ArrayList<ServicoPrestado>();
+        for(Integer i = 1; i < 10; i++) {
+            servicoPrestado = new ServicoPrestado();
 
-        servicoPrestado.setServicoId(1);
-        servicoPrestado.setNomeServico("Corte de Cabelo");
-        servicoPrestado.setNomeCliente("Celso Xavier");
-        servicoPrestado.setDescricaoServico("Corte de cabelo usando máquina");
-        servicoPrestado.setServicoValorCobrado(50.0);
-
-        servicosPrestados.add(servicoPrestado);
-
+            servicoPrestado.setServicoId(i);
+            servicoPrestado.setNomeServico("Corte de Cabelo");
+            servicoPrestado.setNomeCliente("Celso Xavier");
+            servicoPrestado.setDescricaoServico("Corte de cabelo usando máquina");
+            servicoPrestado.setServicoValorCobrado(50.0);
+            servicoPrestado.setStatus("Receber");
+            servicosPrestados.add(servicoPrestado);
+        }
         return servicosPrestados;
     }
 }

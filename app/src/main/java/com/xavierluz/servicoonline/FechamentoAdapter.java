@@ -1,22 +1,24 @@
 package com.xavierluz.servicoonline;
+
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.xavierluz.servicoonline.prestados.ServicoPrestado;
-import com.xavierluz.servicoonline.prestados.ServicoPrestadoViewHolder;
+import com.xavierluz.servicoonline.fechamento.ServicoFechamento;
+import com.xavierluz.servicoonline.fechamento.ServicoFechamentoViewHolder;
 
 import java.util.List;
 
-public class PrestadoAdapter extends RecyclerView.Adapter{
-    private List<ServicoPrestado> servicosPrestados;
+public class FechamentoAdapter extends RecyclerView.Adapter {
+    private List<ServicoFechamento> servicoFechamentos;
     private Context context;
-    public PrestadoAdapter(List<ServicoPrestado> servicosPrestados,Context context){
+    public FechamentoAdapter(List<ServicoFechamento> servicoFechamentos, Context context){
         this.context = context;
-        this.servicosPrestados = servicosPrestados;
+        this.servicoFechamentos = servicoFechamentos;
     }
     /**
      * Called when RecyclerView needs a new {@link ViewHolder} of the given type to represent
@@ -41,10 +43,10 @@ public class PrestadoAdapter extends RecyclerView.Adapter{
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context)
-                .inflate(R.layout.cards_servico_prestado_layout, parent, false);
-        ServicoPrestadoViewHolder servicoPrestadoViewHolder = new ServicoPrestadoViewHolder(view);
+                .inflate(R.layout.cards_servico_fechado_layout, parent, false);
+        ServicoFechamentoViewHolder servicoFechamentoViewHolder = new ServicoFechamentoViewHolder(view);
 
-        return servicoPrestadoViewHolder;
+        return servicoFechamentoViewHolder;
     }
 
     /**
@@ -69,14 +71,15 @@ public class PrestadoAdapter extends RecyclerView.Adapter{
      */
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ServicoPrestadoViewHolder servicoPrestadoViewHolder =(ServicoPrestadoViewHolder) holder;
+        ServicoFechamentoViewHolder servicoFechamentoViewHolder =(ServicoFechamentoViewHolder) holder;
 
-        ServicoPrestado servicoPrestado = servicosPrestados.get(position);
-        servicoPrestadoViewHolder.nomeServico.setText(servicoPrestado.getNomeServico());
-        servicoPrestadoViewHolder.nomeCliente.setText(servicoPrestado.getNomeCliente());
-        servicoPrestadoViewHolder.servicoValorCobrado.setText(Double.toString(servicoPrestado.getServicoValorCobrado()));
-        servicoPrestadoViewHolder.descricaoServico.setText(servicoPrestado.getDescricaoServico());
-        servicoPrestadoViewHolder.servicoStatus.setText(servicoPrestado.getStatus());
+        ServicoFechamento servicoFechamento = servicoFechamentos.get(position);
+        Log.i("Fechamento",Integer.toString(servicoFechamentos.size()));
+        servicoFechamentoViewHolder.textFechamentoId.setText(servicoFechamento.getFechamentoId().toString());
+        servicoFechamentoViewHolder.textDataFechamento.setText(servicoFechamento.getDataFechamento().toString());
+        servicoFechamentoViewHolder.textDataPorExtenso.setText(servicoFechamento.getDataPorExtenso());
+        servicoFechamentoViewHolder.textDescricaoFechamento.setText(servicoFechamento.getDescricaoFechamento());
+        servicoFechamentoViewHolder.textFechamentoServicoId.setText(servicoFechamento.getfechamentoServicoId().toString());
     }
 
     /**
@@ -86,6 +89,6 @@ public class PrestadoAdapter extends RecyclerView.Adapter{
      */
     @Override
     public int getItemCount() {
-        return this.servicosPrestados.size();
+        return this.servicoFechamentos.size();
     }
 }

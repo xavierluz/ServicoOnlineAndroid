@@ -21,7 +21,7 @@
     android:paddingTop="0dp">
 
     <android.support.v7.widget.CardView
-        android:id="@+id/cards_servicoPrestado"
+        android:id="@+id/cards_servicoFechado"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="1dp"
@@ -41,7 +41,7 @@
         app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
-            android:id="@+id/layoutCardView"
+            android:id="@+id/layoutCardViewFechado"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="0dp"
@@ -57,29 +57,38 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textServicoName"
+                    android:id="@+id/textDataFechamento"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_margin="4dp"
-                    android:text="Nome do serviço"
+                    android:text="Mês de fechamento"
                     android:textAlignment="center"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="@color/colorTextoPrimary" />
 
-
+                <TextView
+                    android:id="@+id/textFechamentoServicoId"
+                    android:visibility="invisible"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp" />
+                <TextView
+                    android:id="@+id/textFechamentoId"
+                    android:visibility="invisible"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp" />
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/colorFundoServico">
                     <TextView
-                        android:id="@+id/servicoId"
+                        android:id="@+id/fechamentoId"
                         android:visibility="invisible"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:id="@+id/textDescricao"
+                        android:id="@+id/textDescricaoFechamento"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -90,7 +99,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:padding="2dp"
-                        android:text="Nome do cliente"
+                        android:text="Descrição"
                         android:textAlignment="center"
                         android:textColor="@color/colorTextoPrimary"
                         android:textStyle="bold"
@@ -100,61 +109,24 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.0" />
 
-                    <TextView
-                        android:id="@+id/textValor"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
 
-                        android:layout_margin="3dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:padding="2dp"
-                        android:text="Valor"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorTextoPrimary"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/textDescricao"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0" />
                 </android.support.constraint.ConstraintLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/colorFundoServico">
 
-                    <TextView
-                        android:id="@+id/textCliente"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-
-                        android:layout_margin="3dp"
-                        android:padding="2dp"
-                        android:text="Descrição do serviço"
-                        android:textAlignment="center"
-                        android:textColor="@color/servicoDescricao" />
-
-                </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/colorBackgroundFundo">
 
                     <TextView
-                        android:id="@+id/textStatus"
+                        android:id="@+id/textValorFechamento"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
 
                         android:layout_margin="3dp"
                         android:padding="2dp"
-                        android:text="Status"
+                        android:text="Valor Fechamento"
                         android:textAlignment="center"
                         android:textAllCaps="true"
                         android:textColor="@color/colorPrimaryDark"
