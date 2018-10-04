@@ -1,8 +1,14 @@
 package com.xavierluz.servicoonline.fechamento;
 
+import android.util.Log;
+
+import java.text.DateFormat;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class ServicoFechamento {
     private Integer fechamentoId;
@@ -73,10 +79,12 @@ public class ServicoFechamento {
             servicoFechamento.setfechamentoServicoId(i);
             servicoFechamento.setDescricaoFechamento("Fechamento do mês");
             servicoFechamento.setDataFechamento( new Date());
-            servicoFechamento.setValorFechamento(50.0);
+            servicoFechamento.setValorFechamento(50.0 * i + (i * .23));
             servicoFechamento.setDataPorExtenso(new Date().toString());
             servicoFechamentos.add(servicoFechamento);
         }
         return servicoFechamentos;
     }
+
+
 }

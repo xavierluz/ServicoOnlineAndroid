@@ -11,7 +11,13 @@ import android.widget.ListView;
 import com.xavierluz.servicoonline.fechamento.ServicoFechamento;
 import com.xavierluz.servicoonline.fechamento.ServicoFechamentoViewHolder;
 
+import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class FechamentoAdapter extends RecyclerView.Adapter {
     private List<ServicoFechamento> servicoFechamentos;
@@ -77,9 +83,10 @@ public class FechamentoAdapter extends RecyclerView.Adapter {
         Log.i("Fechamento",Integer.toString(servicoFechamentos.size()));
         servicoFechamentoViewHolder.textFechamentoId.setText(servicoFechamento.getFechamentoId().toString());
         servicoFechamentoViewHolder.textDataFechamento.setText(servicoFechamento.getDataFechamento().toString());
-        servicoFechamentoViewHolder.textDataPorExtenso.setText(servicoFechamento.getDataPorExtenso());
+        servicoFechamentoViewHolder.textDataPorExtenso.setText(formatarDataMesAno(servicoFechamento.getDataFechamento()));
         servicoFechamentoViewHolder.textDescricaoFechamento.setText(servicoFechamento.getDescricaoFechamento());
         servicoFechamentoViewHolder.textFechamentoServicoId.setText(servicoFechamento.getfechamentoServicoId().toString());
+        servicoFechamentoViewHolder.textValorFechamento.setText("R$ " + formatarDecimal(servicoFechamento.getValorFechamento()));
     }
 
     /**
@@ -91,4 +98,44 @@ public class FechamentoAdapter extends RecyclerView.Adapter {
     public int getItemCount() {
         return this.servicoFechamentos.size();
     }
+    // ESSE MÉTODO AQUI CASO QUERIA PEGAR SEMPRE
+    // A DATA ATUAL JA FORMATADA
+    public static String getDataFormatada(){
+        DateFormat formatador = DateFormat.getDateInstance(DateFormat.FULL, new Locale("pt", "BR"));
+
+        // DATA ATUAL DO SISTEMA : new Date(System.currentTimeMillis())
+        String dataExtenso = formatador.format(new Date(System.currentTimeMillis()));
+        int index  = dataExtenso.indexOf(",") + 2;
+        int lenght = dataExtenso.length();
+        return dataExtenso.substring(index, lenght).toLowerCase();
+    }
+
+
+    // ESSE MÉTODO AQUI VC PASSA UMA DATA PARA ELE
+    // E ELE TE DEVOLVE ELA FORMATADA !!
+    public static String formataData(Date data){
+        DateFormat formatador = DateFormat.getDateInstance(DateFormat.FULL, new Locale("pt", "BR"));
+        String dataExtenso = formatador.format(data);
+        int index  = dataExtenso.indexOf(",") + 2;
+        int lenght = dataExtenso.length();
+        Log.i("DataFormatada",dataExtenso);
+        return dataExtenso.substring(index, lenght).toLowerCase();
+    }
+
+    public static String formatarDataMesAno(Date data){
+        Locale local = new Locale("pt","BR");
+        DateFormat dateFormat = new SimpleDateFormat("MMMM 'de' yyyy",local);
+        return dateFormat.format(data);
+    }
+
+    public static String formatarMoeda(Double valor){
+        NumberFormat numberFormat =   NumberFormat.getCurrencyInstance();
+        return numberFormat.format(valor);
+    }
+    public static String formatarDecimal(Double valor){
+        DecimalFormat decimalFormat = new DecimalFormat("0.##");
+        return decimalFormat.format(valor);
+    }
+
+
 }

@@ -12,14 +12,16 @@ public class ServicoFechamentoViewHolder extends RecyclerView.ViewHolder  {
     public TextView textDescricaoFechamento;
     public TextView textDataFechamento;
     public TextView textDataPorExtenso;
-
+    public TextView textValorFechamento;
     public ServicoFechamentoViewHolder(View itemView) {
         super(itemView);
         this.textFechamentoId = (TextView) itemView.findViewById(R.id.textFechamentoId);
         this.textFechamentoServicoId = (TextView) itemView.findViewById(R.id.textFechamentoServicoId);
         this.textDescricaoFechamento = (TextView) itemView.findViewById(R.id.textDescricaoFechamento);
-        this.textDescricaoFechamento = (TextView) itemView.findViewById(R.id.textDescricaoFechamento);
+        this.textValorFechamento = (TextView) itemView.findViewById(R.id.textValorFechamento);
         this.textDataPorExtenso = (TextView) itemView.findViewById(R.id.textDataFechamento);
         this.textDataFechamento = (TextView) itemView.findViewById(R.id.textDataFechamento);
     }
+
+
 }
