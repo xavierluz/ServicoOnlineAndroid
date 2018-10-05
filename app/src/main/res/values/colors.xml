@@ -10,9 +10,11 @@
     <color name="colorBackground_ligth">#ffffff</color>
     <color name="colorTituloPrimary">#4e083a</color>
     <color name="colorFundoServico">#8b1e6c</color>
-    <color name="colorLinhaServico">#e6dede</color>
+    <color name="colorLinhaServico">#cec6c6</color>
     <color name="colorLinhaServicoPrimary">#4e083a</color>
     <color name="servicoPrestadoFundoStatus">#804674</color>
     <color name="servicoDescricao">#e9e4dd</color>
+    <color name="secondary_text_default_material_dark">#fdffffff</color>
+    <color name="foreground_material_light">#faf8f8</color>
 </resources>
 

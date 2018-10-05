@@ -1,5 +1,8 @@
 package com.xavierluz.servicoonline;
 
+import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -40,6 +43,8 @@ public class ServicosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_servicos);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //Drawable color = new ColorDrawable(getResources().getColor(android.R.color.white));
+        toolbar.setSubtitleTextColor(getResources().getColor(android.R.color.white));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // Display icon in the toolbar
@@ -52,6 +57,7 @@ public class ServicosActivity extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         setupTabIcons();
+        tabLayout.setTabTextColors(getResources().getColor(android.R.color.white),getResources().getColor(android.R.color.darker_gray));
         viewPager.setOnTouchListener(new View.OnTouchListener() {
 
             int dragthreshold = 30;
@@ -134,9 +140,16 @@ public class ServicosActivity extends AppCompatActivity {
             case R.id.bookmark_item:
                 // do your code
                 return true;
+            case R.id.menuNovoServico:
+                abrirCadastroServicoActivity();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+    private void abrirCadastroServicoActivity(){
+        Intent intent = new Intent(this, ServicoCadastroActivity.class);
+        startActivity(intent);
     }
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();

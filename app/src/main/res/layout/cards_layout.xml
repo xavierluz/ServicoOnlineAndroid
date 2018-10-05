@@ -35,7 +35,7 @@
         android:paddingRight="0dp"
         android:paddingStart="0dp"
         android:paddingTop="0dp"
-        app:cardBackgroundColor="@color/colorFundoServico"
+        app:cardBackgroundColor="@color/colorBackgroundFundo"
         app:cardCornerRadius="3dp"
         app:cardElevation="1dp"
         app:cardUseCompatPadding="true"
@@ -58,6 +58,7 @@
                 android:layout_marginTop="2dp"
                 android:layout_weight="2"
                 android:gravity="center_vertical"
+                android:background="@color/colorBackgroundFundo"
                 android:orientation="vertical">
 
                 <TextView
@@ -69,13 +70,13 @@
                     android:text="Android Name"
                     android:textAlignment="center"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@color/colorTextoPrimary"
+                    android:textColor="@color/colorTituloPrimary"
                     android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/colorFundoServico">
+                    android:background="@color/colorBackgroundFundo">
 
                     <TextView
                         android:id="@+id/textSlogan"

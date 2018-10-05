@@ -11,6 +11,8 @@
         <item name="android:textColorHint">@color/colorBackground_ligth</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:colorForeground">@color/foreground_material_light</item>
+        <item name="android:toolbarStyle">@color/foreground_material_light</item>
     </style>
 
 
