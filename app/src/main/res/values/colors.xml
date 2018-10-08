@@ -1,20 +1,22 @@
 <resources>
-    <color name="colorPrimary">#5b0e49</color>
-    <color name="colorSecundary">#9e71125b</color>
-    <color name="colorPrimaryDark">#de002c</color>
-    <color name="colorAccent">#5b0e49</color>
+    <color name="colorPrimary">#344955</color>
+    <color name="colorSecondary">#f9aa33</color>
+    <color name="colorPrimaryDark">#232f34</color>
+    <color name="colorAccent">#4a6572</color>
     <color name="primary_material_light">#344955</color>
     <color name="colorBackgroundFundo">#ffffff</color>
     <color name="colorTextoPrimary">#efe9e9</color>
     <color name="colorBackgroundPrimary">#d2dadf</color>
     <color name="colorBackground_ligth">#ffffff</color>
-    <color name="colorTituloPrimary">#4e083a</color>
-    <color name="colorFundoServico">#8b1e6c</color>
+    <color name="colorTituloPrimary">#767676</color>
+    <color name="colorFundoServico">#cca160</color>
     <color name="colorLinhaServico">#cec6c6</color>
-    <color name="colorLinhaServicoPrimary">#4e083a</color>
-    <color name="servicoPrestadoFundoStatus">#804674</color>
+    <color name="colorLinhaServicoPrimary">#9f7639</color>
+    <color name="servicoPrestadoFundoStatus">#434c51</color>
     <color name="servicoDescricao">#e9e4dd</color>
     <color name="secondary_text_default_material_dark">#fdffffff</color>
-    <color name="foreground_material_light">#faf8f8</color>
+    <color name="foreground_material_light">#4a6572</color>
+    <color name="background_material_light">#fcfcfd</color>
+    <color name="colorButtonFundoServico">#f9aa33</color>
 </resources>
 

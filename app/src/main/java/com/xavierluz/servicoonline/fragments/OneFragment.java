@@ -50,9 +50,9 @@ public class OneFragment extends Fragment{
         layoutManager = new LinearLayoutManager(view.getContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addItemDecoration(new SimpleDividerItemDecoration(
+        /*recyclerView.addItemDecoration(new SimpleDividerItemDecoration(
                 getActivity().getApplicationContext()
-        ));
+        ));*/
 
 
         data = new ArrayList<DataModel>();
