@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
+    android:theme="@style/AppTheme"
+    android:background="@color/colorPrimary"
     tools:context=".ServicoCadastroActivity">
 
 
@@ -12,8 +13,9 @@
             android:id="@+id/toolbarServico"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorAccent"
             app:layout_scrollFlags="scroll|enterAlways"
+            android:theme="@style/AppTheme"
+            android:background="@color/colorPrimary"
             app:titleTextColor="@color/colorTextoPrimary" />
 
 
@@ -28,11 +30,14 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:theme="@style/AppTheme"
+        android:background="@color/colorPrimary"
         app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:theme="@style/AppTheme"
             android:orientation="vertical">
 
             <TextView
