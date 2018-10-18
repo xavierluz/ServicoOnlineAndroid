@@ -23,7 +23,9 @@
         <activity android:name=".ServicosActivity" />
         <activity android:name=".fragments.PrestadosActivity" />
         <activity android:name=".fragments.FechamnetoActivity" />
-        <activity android:name=".ServicoCadastroActivity"></activity>
+        <activity android:name=".ServicoCadastroActivity" />
+        <activity android:name=".ItemServicoActivity" />
+        <activity android:name=".ListaItemServicoActivity"></activity>
     </application>
 
 </manifest>

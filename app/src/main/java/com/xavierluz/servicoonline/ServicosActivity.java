@@ -148,7 +148,8 @@ public class ServicosActivity extends AppCompatActivity {
         }
     }
     private void abrirCadastroServicoActivity(){
-        Intent intent = new Intent(this, ServicoCadastroActivity.class);
+        //Intent intent = new Intent(this, ServicoCadastroActivity.class);
+        Intent intent = new Intent(this, ListaItemServicoActivity.class);
         startActivity(intent);
     }
     class ViewPagerAdapter extends FragmentPagerAdapter {

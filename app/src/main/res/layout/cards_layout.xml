@@ -82,7 +82,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_margin="2dp"
-                android:background="@color/colorPrimaryDark"
+                android:background="@color/colorBackgroundFundo"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
@@ -96,7 +96,7 @@
                     android:layout_marginRight="0dp"
                     android:layout_marginStart="0dp"
                     android:layout_marginTop="2dp"
-                    android:background="@color/colorButtonFundoServico"
+                    android:background="@color/colorBackgroundPrimary"
                     android:elevation="3dp"
                     app:srcCompat="@drawable/baseline_add_circle_white_48" />
 
