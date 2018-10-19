@@ -1,8 +1,6 @@
 package com.xavierluz.servicoonline;
 
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -21,8 +19,7 @@ import android.widget.Toast;
 import com.xavierluz.servicoonline.fragments.FechamnetoActivity;
 import com.xavierluz.servicoonline.fragments.OneFragment;
 import com.xavierluz.servicoonline.fragments.PrestadosActivity;
-import com.xavierluz.servicoonline.fragments.ThreeFragment;
-import com.xavierluz.servicoonline.fragments.TwoFragment;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -148,8 +145,7 @@ public class ServicosActivity extends AppCompatActivity {
         }
     }
     private void abrirCadastroServicoActivity(){
-        //Intent intent = new Intent(this, ServicoCadastroActivity.class);
-        Intent intent = new Intent(this, ListaItemServicoActivity.class);
+        Intent intent = new Intent(this, ServicoCadastroActivity.class);
         startActivity(intent);
     }
     class ViewPagerAdapter extends FragmentPagerAdapter {

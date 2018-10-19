@@ -11,6 +11,7 @@ import android.widget.ListView;
 import com.xavierluz.servicoonline.fechamento.ServicoFechamento;
 import com.xavierluz.servicoonline.fechamento.ServicoFechamentoViewHolder;
 
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -22,6 +23,7 @@ import java.util.Locale;
 public class FechamentoAdapter extends RecyclerView.Adapter {
     private List<ServicoFechamento> servicoFechamentos;
     private Context context;
+
     public FechamentoAdapter(List<ServicoFechamento> servicoFechamentos, Context context){
         this.context = context;
         this.servicoFechamentos = servicoFechamentos;
@@ -137,5 +139,22 @@ public class FechamentoAdapter extends RecyclerView.Adapter {
         return decimalFormat.format(valor);
     }
 
-
+    public static double formatoDecimalSemTipoMoeda(String valor) {
+        if (valor.length() > 0) {
+            return valorSemMascara(valor);
+        }
+        return 0.0;
+    }
+    private static Double valorSemMascara(String valor) {
+        BigDecimal parsed = null;
+        try {
+            String cleanString = valor.replaceAll("[R,$,.]", "");
+            parsed = new BigDecimal(cleanString).setScale(2,
+                    BigDecimal.ROUND_FLOOR).divide(new BigDecimal(100),
+                    BigDecimal.ROUND_FLOOR);
+        } catch (Exception e) {
+            parsed = new BigDecimal("0.0");
+        }
+        return parsed.doubleValue();
+    }
 }

@@ -22,7 +22,7 @@
     android:paddingTop="0dp">
 
     <android.support.v7.widget.CardView
-        android:id="@+id/card_view"
+        android:id="@+id/card_view_listaServicos"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="1dp"
@@ -51,16 +51,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textServicoId"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Android Name"
-                android:textAlignment="center"
-                android:textColor="@color/colorTituloPrimary"
-                android:textStyle="bold"
-                android:visibility="visible" />
-            <TextView
-                android:id="@+id/textServicoName"
+                android:id="@+id/textNomeItemServicoDaLista"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -71,7 +62,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textSlogan"
+                android:id="@+id/textItemDescricaoServicoLista"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -86,6 +77,22 @@
                 android:textAlignment="center"
                 android:textColor="@color/colorSecondary" />
 
+            <TextView
+                android:id="@+id/textPrecoItemServicoLista"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="2dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="2dp"
+                android:padding="2dp"
+                android:text="Valor do serviço"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold" />
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -95,43 +102,45 @@
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
-                <ImageButton
-                    android:id="@+id/imageButtonAdicionarServico"
-                    style="@android:style/Widget.DeviceDefault.Light.ImageButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
+
+                <CheckBox
+                    android:id="@+id/checkItemSevicoSelecionar"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="8dp"
                     android:background="@color/colorButtonFundoServico"
-                    android:elevation="0dp"
+                    android:checked="false"
+                    android:text="Selecione o serviço"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/colorTituloPrimary"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/imageButtonEditarServico"
+                    app:layout_constraintEnd_toStartOf="@+id/imgButtonEditarItemLista"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/baseline_add_circle_white_48" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageButton
-                    android:id="@+id/imageButtonEditarServico"
-                    style="@style/Widget.AppCompat.ImageButton"
+                    android:id="@+id/imgButtonEditarItemLista"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="4dp"
+                    android:layout_marginBottom="8dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_weight="0"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
                     android:background="@color/colorButtonFundoServico"
-                    android:layoutDirection="rtl"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imageButtonAdicionarServico"
+                    app:layout_constraintHorizontal_bias="0.673"
+                    app:layout_constraintStart_toEndOf="@+id/checkItemSevicoSelecionar"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/baseline_create_black_48" />
-
             </android.support.constraint.ConstraintLayout>
 
         </LinearLayout>
     </android.support.v7.widget.CardView>
+
+
 </android.support.constraint.ConstraintLayout>

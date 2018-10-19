@@ -5,34 +5,79 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackgroundPrimary"
+    android:theme="@style/AppTheme"
+    android:orientation="vertical"
+    android:id="@+id/layoutListaItensDoServico"
     tools:context=".ListaItemServicoActivity">
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbarListaItemServico"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:layout_scrollFlags="scroll|enterAlways"
-        android:theme="@style/AppTheme"
         android:background="@color/colorPrimary"
+        android:theme="@style/AppTheme"
+        app:layout_scrollFlags="scroll|enterAlways"
         app:titleTextColor="@color/colorTextoPrimary" />
-    <android.support.v7.widget.CardView
+
+    <LinearLayout
+        android:id="@+id/linearLayoutListaItemServico"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginBottom="120dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="2dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:theme="@style/AppTheme"
-        android:background="@color/colorPrimary"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toBottomOf="@+id/toolbarListaItemServico"
+        app:layout_constraintVertical_bias="0.0">
 
-        <LinearLayout
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycleViewListaItemServico"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:theme="@style/AppTheme"
-            android:orientation="vertical">
+            android:background="@color/colorBackgroundFundo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/imgButtonSalvarServicoPrestado"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="50dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorBackgroundFundo"
+        android:src="@drawable/baseline_save_black_48"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutListaItemServico"
+        app:layout_constraintVertical_bias="0.99" />
+
+    <TextView
+        android:id="@+id/textViewValorTotalServicoPrestado"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/colorButtonFundoServico"
+        android:text="teseee"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgButtonSalvarServicoPrestado" />
 </android.support.constraint.ConstraintLayout>

@@ -53,7 +53,7 @@ public class SingInActivity extends AppCompatActivity {
 
         removedItems = new ArrayList<Integer>();
 
-        adapter = new CustomAdapter(data);
+        adapter = new CustomAdapter(data,this);
         recyclerView.setAdapter(adapter);
 
     }

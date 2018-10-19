@@ -18,5 +18,7 @@
     <color name="foreground_material_light">#4a6572</color>
     <color name="background_material_light">#fcfcfd</color>
     <color name="colorButtonFundoServico">#f9aa33</color>
+    <color name="colorBackgroundFundoFundoBotao">#fcaf3d</color>
+    <color name="colorBackgroundBotaoAcaoActivityPrimary">#b7cbd7</color>
 </resources>
 

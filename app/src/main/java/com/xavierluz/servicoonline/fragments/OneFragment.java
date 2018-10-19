@@ -10,12 +10,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.xavierluz.servicoonline.CustomAdapter;
 import com.xavierluz.servicoonline.DataModel;
 import com.xavierluz.servicoonline.MyData;
 import com.xavierluz.servicoonline.R;
+import com.xavierluz.servicoonline.RecyclerViewClickListener;
 import com.xavierluz.servicoonline.SimpleDividerItemDecoration;
+import com.xavierluz.servicoonline.SingInActivity;
 
 import java.util.ArrayList;
 
@@ -25,7 +28,7 @@ public class OneFragment extends Fragment{
     private RecyclerView.LayoutManager layoutManager;
     private static RecyclerView recyclerView;
     private static ArrayList<DataModel> data;
-    static View.OnClickListener myOnClickListener;
+    public static View.OnClickListener myOnClickListener;
     private static ArrayList<Integer> removedItems;
 
     public OneFragment() {
@@ -42,12 +45,12 @@ public class OneFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_one, container, false);
-
-        recyclerView = (RecyclerView) view.findViewById(R.id.recycleViewServico);
+        View viewOne = inflater.inflate(R.layout.fragment_one, container, false);
+        recyclerView = (RecyclerView) viewOne.findViewById(R.id.recycleViewServico);
         recyclerView.setHasFixedSize(true);
+        myOnClickListener = new MyOnClickListener(viewOne.getContext());
 
-        layoutManager = new LinearLayoutManager(view.getContext());
+        layoutManager = new LinearLayoutManager(viewOne.getContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         /*recyclerView.addItemDecoration(new SimpleDividerItemDecoration(
@@ -67,11 +70,12 @@ public class OneFragment extends Fragment{
 
         removedItems = new ArrayList<Integer>();
 
-        adapter = new CustomAdapter(data);
+        adapter = new CustomAdapter(data,this.getContext());
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(viewOne.getContext(), LinearLayoutManager.VERTICAL, false));
         // Inflate the layout for this fragment
-        return view;
+
+        return viewOne;
     }
 
     private static class MyOnClickListener implements View.OnClickListener {
@@ -84,7 +88,14 @@ public class OneFragment extends Fragment{
 
         @Override
         public void onClick(View v) {
-            removeItem(v);
+            int selectedItemPosition = recyclerView.getChildPosition(v);
+            RecyclerView.ViewHolder viewHolder
+                    = recyclerView.findViewHolderForPosition(selectedItemPosition);
+            TextView textViewName
+                    = (TextView) viewHolder.itemView.findViewById(R.id.textServicoName);
+            String selectedName = (String) textViewName.getText();
+
+            Toast.makeText(context, "Nome do serviço: " + selectedName, Toast.LENGTH_LONG).show();
         }
 
         private void removeItem(View v) {

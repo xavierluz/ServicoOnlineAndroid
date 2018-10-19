@@ -3,6 +3,7 @@ package com.xavierluz.servicoonline.fechamento;
 import android.util.Log;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -85,6 +86,7 @@ public class ServicoFechamento {
         }
         return servicoFechamentos;
     }
+
 
 
 }
