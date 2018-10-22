@@ -20,5 +20,6 @@ public class ItemServicoViewHolder extends RecyclerView.ViewHolder  {
         this.textPrecoItemServico = (TextView) itemView.findViewById(R.id.textPrecoItemServicoLista);
         this.chkItemServicoSelecionado = (CheckBox) itemView.findViewById(R.id.checkItemSevicoSelecionar);
         this.itemServicoId=0;
+        this.setIsRecyclable(true);
     }
 }

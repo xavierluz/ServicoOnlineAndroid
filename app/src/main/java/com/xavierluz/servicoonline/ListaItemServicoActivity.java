@@ -44,7 +44,7 @@ public class ListaItemServicoActivity extends AppCompatActivity {
         Bundle extras = intent.getExtras();
         //Extracting the stored data from the bundle
         Integer servicoId = extras.getInt("ServicoId");
-        Toast.makeText(this, "Selected Item: " + Integer.toString(servicoId), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Selected Item: " + Integer.toString(servicoId), Toast.LENGTH_SHORT).show();
 
         TextView textViewValorTotal = (TextView) findViewById(R.id.textViewValorTotalServicoPrestado);
         textViewValorTotal.setText("0.00");
@@ -118,5 +118,9 @@ public class ListaItemServicoActivity extends AppCompatActivity {
         bundle.putInt("ServicoId",1);
         intent.putExtra("Servico",bundle);
         startActivity(intent);
+    }
+
+    private void salvarSevicoPrestado(List<ItemServicoViewHolder> itemServicos){
+
     }
 }

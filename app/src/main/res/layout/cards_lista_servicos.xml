@@ -117,6 +117,8 @@
                     android:textAlignment="textStart"
                     android:textColor="@color/colorTituloPrimary"
                     android:textStyle="bold"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/imgButtonEditarItemLista"
                     app:layout_constraintStart_toStartOf="parent"

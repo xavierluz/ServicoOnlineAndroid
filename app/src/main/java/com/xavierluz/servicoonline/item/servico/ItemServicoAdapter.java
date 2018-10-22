@@ -78,13 +78,15 @@ public class ItemServicoAdapter extends RecyclerView.Adapter{
      * @param position The position of the item within the adapter's data set.
      */
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         final ItemServicoViewHolder itemServicoViewHolder = (ItemServicoViewHolder) holder;
         final ItemServico itemServico = this.itemServicos.get(position);
         Log.i("ListaItemServico", Integer.toString(this.itemServicos.size()));
         itemServicoViewHolder.textNomeItemServico.setText(itemServico.getNomeItemServico().toString());
         itemServicoViewHolder.textDescricaoItemServico.setText(itemServico.getDescricaoItemServico().toString());
         itemServicoViewHolder.textPrecoItemServico.setText(FechamentoAdapter.formatarMoeda(itemServico.getPrecoItemServico()));
+        CheckBox checkBoxtemServicoSelecionado = (holder.itemView.findViewById(R.id.checkItemSevicoSelecionar));
+        checkBoxtemServicoSelecionado.setText(itemServicoViewHolder.textPrecoItemServico.getText().toString());
         itemServicoViewHolder.chkItemServicoSelecionado.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -96,21 +98,19 @@ public class ItemServicoAdapter extends RecyclerView.Adapter{
 
                 if (itemServicoViewHolder.chkItemServicoSelecionado.isChecked()) {
                     itemServicoViewHolder.itemServicoId = itemServico.getItemServicoId();
-                    //itemServico.somarPreco(valorTotalDoServico);
+                    /*itemServico.somarPreco(valorTotalDoServico);
                     Toast.makeText(context, "Soma Valor Total: " + Double.toString(_valor), Toast.LENGTH_SHORT).show();
-                    Toast.makeText(context, "soma Preço: " + Double.toString(valorDoServico), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "soma Preço: " + Double.toString(valorDoServico), Toast.LENGTH_SHORT).show();*/
                     valorTotal = _valor + valorDoServico;
                 }else{
-                    //itemServico.subtrairPreco(valorTotalDoServico);
-                    Toast.makeText(context, "Subtrair Valor Total: " + Double.toString(_valor), Toast.LENGTH_SHORT).show();
-                    Toast.makeText(context, "Subtrair Preço: " + Double.toString(valorDoServico), Toast.LENGTH_SHORT).show();
                     valorTotal = _valor - valorDoServico;
                 }
                 Log.i("ValorTotalServico",FechamentoAdapter.formatarMoeda(itemServico.getValorDoServico()));
 
-                textViewValorTotal.setText(FechamentoAdapter.formatarDecimal(valorTotal));
+                textViewValorTotal.setText(FechamentoAdapter.formatarMoeda(valorTotal));
             }
         });
+
     }
     /**
      * Return the view type of the item at <code>position</code> for the purposes
@@ -126,7 +126,7 @@ public class ItemServicoAdapter extends RecyclerView.Adapter{
      */
     @Override
     public int getItemViewType(int position) {
-        return super.getItemViewType(position);
+        return position;
     }
 
     /**
@@ -138,8 +138,6 @@ public class ItemServicoAdapter extends RecyclerView.Adapter{
     public int getItemCount() {
         return this.itemServicos.size();
     }
-
-
     /**
      * Return the stable ID for the item at <code>position</code>. If {@link #hasStableIds()}
      * would return false this method should return {@link #NO_ID}. The default implementation
@@ -150,6 +148,7 @@ public class ItemServicoAdapter extends RecyclerView.Adapter{
      */
     @Override
     public long getItemId(int position) {
-        return super.getItemId(position);
+        return position;
     }
+
 }

@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.xavierluz.servicoonline.fragments.FechamnetoActivity;
 import com.xavierluz.servicoonline.fragments.OneFragment;
 import com.xavierluz.servicoonline.fragments.PrestadosActivity;
@@ -31,9 +32,9 @@ public class ServicosActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private ScrollView scrollView;
     private int[] tabIcons = {
-            R.drawable.baseline_add_box_black_18dp,
-            R.drawable.baseline_ballot_black_18dp,
-            R.drawable.baseline_attach_money_black_18dp
+            R.drawable.baseline_open_in_new_white_48,
+            R.drawable.baseline_ballot_white_48,
+            R.drawable.baseline_money_white_48
     };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,8 +135,9 @@ public class ServicosActivity extends AppCompatActivity {
             case R.id.share_item:
                 // do your code
                 return true;
-            case R.id.bookmark_item:
-                // do your code
+            case R.id.Logout:
+                finish();
+                Logout();
                 return true;
             case R.id.menuNovoServico:
                 abrirCadastroServicoActivity();
@@ -143,6 +145,11 @@ public class ServicosActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+    private void Logout(){
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
     private void abrirCadastroServicoActivity(){
         Intent intent = new Intent(this, ServicoCadastroActivity.class);

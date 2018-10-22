@@ -16,7 +16,7 @@
         android:title="BookMark" />
     <item
         android:id="@+id/NovoItemServico"
-        android:icon="@drawable/baseline_open_in_new_black_18dp"
+        android:icon="@drawable/baseline_open_in_new_white_48"
 
         android:title="Novo Serviço"
         app:showAsAction="ifRoom"></item>
