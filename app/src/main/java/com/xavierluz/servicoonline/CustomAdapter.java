@@ -74,7 +74,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             public void onClick(View v) {
                 Intent intent = new Intent(context, ListaItemServicoActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putInt("ServicoId",Integer.parseInt(holder.textViewId.getText().toString()));
+                bundle.putString("ServicoId","LPXDfRZ3kAJECKw93c4");
                 intent.putExtras(bundle);
                 context.startActivity(intent);
             }

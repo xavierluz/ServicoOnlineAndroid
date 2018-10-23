@@ -7,8 +7,8 @@ import java.util.List;
 
 public class ItemServico {
 
-    private int itemServicoId;
-    private int servicoId;
+    private String itemServicoId;
+    private String servicoId;
     private String nomeItemServico;
     private String descricaoItemServico;
     private double precoItemServico;
@@ -22,23 +22,23 @@ public class ItemServico {
     }
 
 
-    public ItemServico(int servicoId) {
+    public ItemServico(String servicoId) {
         this.servicoId = servicoId;
     }
 
-    public int getItemServicoId() {
+    public String getItemServicoId() {
         return itemServicoId;
     }
 
-    public void setItemServicoId(int itemServicoId) {
+    public void setItemServicoId(String itemServicoId) {
         this.itemServicoId = itemServicoId;
     }
 
-    public int getServicoId() {
+    public String getServicoId() {
         return servicoId;
     }
 
-    public void setServicoId(int servicoId) {
+    public void setServicoId(String servicoId) {
         this.servicoId = servicoId;
     }
 
@@ -90,12 +90,12 @@ public class ItemServico {
         if (this.valorDoServico < 0)
             this.valorDoServico = 0;
     }
-    public static List<ItemServico> getItensServicos(int servicoId){
+    public static List<ItemServico> getItensServicos(String servicoId){
         ItemServico itemServico =  null;
         List<ItemServico>  itemServicos =  new ArrayList<ItemServico>();
         for(Integer i = 1; i < 10; i++) {
             itemServico = new ItemServico(servicoId);
-            itemServico.itemServicoId = i;
+            itemServico.itemServicoId = i.toString();
             itemServico.ativo = true;
             itemServico.descricaoItemServico = "Corte de cabelo usando tesoura de 7 pontos.";
             itemServico.nomeItemServico = "Corte Tipo 7";

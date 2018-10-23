@@ -27,7 +27,7 @@ public class ListaItemServicoActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private RecyclerView recycleViewListaItemServico;
     private RecyclerView.LayoutManager layoutManager;
-
+    private String servicoId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,8 +43,8 @@ public class ListaItemServicoActivity extends AppCompatActivity {
         //get the attached bundle from the intent
         Bundle extras = intent.getExtras();
         //Extracting the stored data from the bundle
-        Integer servicoId = extras.getInt("ServicoId");
-        //Toast.makeText(this, "Selected Item: " + Integer.toString(servicoId), Toast.LENGTH_SHORT).show();
+        this.servicoId = extras.getString("ServicoId");
+        Toast.makeText(this, "Selected Item: " + servicoId, Toast.LENGTH_SHORT).show();
 
         TextView textViewValorTotal = (TextView) findViewById(R.id.textViewValorTotalServicoPrestado);
         textViewValorTotal.setText("0.00");
@@ -77,7 +77,7 @@ public class ListaItemServicoActivity extends AppCompatActivity {
                     if (viewHolder != null && viewHolder instanceof ItemServicoViewHolder) {
                             final ItemServicoViewHolder itemServicoViewHolder = (ItemServicoViewHolder) viewHolder;
                         if(itemServicoViewHolder.chkItemServicoSelecionado.isChecked()){
-                            Toast.makeText(view.getContext(), "Selected Item: " + Integer.toString(itemServicoViewHolder.itemServicoId), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(view.getContext(), "Selected Item: " + itemServicoViewHolder.itemServicoId, Toast.LENGTH_SHORT).show();
                         }
                     }
                 }

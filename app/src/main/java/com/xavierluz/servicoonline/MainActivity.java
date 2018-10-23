@@ -27,7 +27,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
     private FirebaseAuth mAuth;
     SignInButton signInButton;
     GoogleApiClient mGoogleApiClient;
@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private static final String TAG = "SingInActivity";
     private static final int RC_SIGN_IN = 9001;
     private Button buttonNovoUsuario;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         this.signInButton.setOnClickListener(this);*/
 
         ImageButton imgButtonLogin =(ImageButton) findViewById(R.id.imgButtonLogin);
-        imgButtonLogin.setOnClickListener(buttonLogin(emailUsuario.getText().toString(), senhaUsuario.getText().toString()));
+        imgButtonLogin.setOnClickListener(buttonLogin());
 
         buttonNovoUsuario = (Button) findViewById(R.id.buttonNovoUsuario);
         buttonNovoUsuario.setOnClickListener(new View.OnClickListener() {
@@ -84,16 +85,16 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         Intent intent =  new Intent(MainActivity.this, ServicosActivity.class);
         startActivity(intent);
     }
-    private View.OnClickListener buttonLogin(final String email, final String senha){
+    private View.OnClickListener buttonLogin(){
         return new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                loginUsuario(email,senha);
+                loginUsuario();
             }
         };
     }
-    private void loginUsuario(String email, String senha){
-        mAuth.signInWithEmailAndPassword(email, senha)
+    private void loginUsuario(){
+        mAuth.signInWithEmailAndPassword(emailUsuario.getText().toString(), senhaUsuario.getText().toString())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -101,10 +102,11 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            iniciarActivityPrincipal();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(MainActivity.this, "Authentication failed.",
+                            Toast.makeText(MainActivity.this, "Verificar se usuário está cadastrado!",
                                     Toast.LENGTH_SHORT).show();
                         }
 
@@ -117,15 +119,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         startActivity(intent);
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.sign_in_button:
-                abrirSingActivity();
-                break;
-
-        }
-    }
 
     private void signIn(){
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(this.mGoogleApiClient);

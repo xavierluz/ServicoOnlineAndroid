@@ -19,7 +19,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.xavierluz.servicoonline.bibliotecas.ValidarEmail;
+import com.xavierluz.servicoonline.servico.Servico;
 
 public class CadastroUsuarioActivity extends AppCompatActivity {
     private EditText nomeUsuario;
@@ -30,6 +36,8 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
     private ImageButton imageButtonSalvar;
     private final String TAG="CadastroUsuario";
     private Toolbar toolbar;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +47,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // Display icon in the toolbar
         getSupportActionBar().setDisplayUseLogoEnabled(true);
+
         this.nomeUsuario = (EditText) findViewById(R.id.editNomeUsuario);
         this.emailUsuario = (EditText) findViewById(R.id.editEmailUsuario);
         this.senhaUsuario = (EditText) findViewById(R.id.editSenhaUsuario);
@@ -171,4 +180,5 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
 
         return retorno;
     }
+
 }
