@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private void iniciarActivityPrincipal(){
         Intent intent =  new Intent(MainActivity.this, ServicosActivity.class);
         startActivity(intent);
+
     }
     private View.OnClickListener buttonLogin(){
         return new View.OnClickListener(){

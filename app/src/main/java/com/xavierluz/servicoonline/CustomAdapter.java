@@ -13,10 +13,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.xavierluz.servicoonline.servico.Servico;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
-    private ArrayList<DataModel> dataSet;
+    private List<Servico> servicos;
     private Context context;
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -25,13 +28,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         TextView textSlogan;
         ImageView imageViewIcon;
         ImageButton imageButtonAdicionarServico;
-        TextView textViewId;
+        TextView textViewServicoId;
         public MyViewHolder(View itemView) {
             super(itemView);
             this.textServicoName = (TextView) itemView.findViewById(R.id.textServicoName);
             this.textSlogan = (TextView) itemView.findViewById(R.id.textSlogan);
             this.imageButtonAdicionarServico =(ImageButton) itemView.findViewById(R.id.imageButtonAdicionarServico);
-            this.textViewId = (TextView) itemView.findViewById(R.id.textServicoId);
+            this.textViewServicoId = (TextView) itemView.findViewById(R.id.textServicoId);
             //this.imageViewIcon = (ImageView) itemView.findViewById(R.id.imageView);
             //Toast.makeText(itemView.getContext(), "Nome do serviço: " +  this.textViewId.getText(), Toast.LENGTH_LONG).show();
 
@@ -40,8 +43,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     }
 
-    public CustomAdapter(ArrayList<DataModel> data, Context context) {
-        this.dataSet = data;
+    public CustomAdapter(List<Servico> servicos, Context context) {
+        this.servicos = servicos;
         this.context = context;
 
     }
@@ -61,30 +64,28 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int listPosition) {
-
-        TextView textViewName = holder.textServicoName;
-        TextView textViewVersion = holder.textSlogan;
-        TextView textViewId = holder.textViewId;
-        textViewId.setText(Integer.toString(dataSet.get(listPosition).getId()));
-        textViewName.setText(dataSet.get(listPosition).getNomeServico());
-        textViewVersion.setText(dataSet.get(listPosition).getSloganServico());
+        final TextView textViewServicoId = holder.textViewServicoId;
+        final TextView textViewName = holder.textServicoName;
+        final TextView textViewVersion = holder.textSlogan;
+        textViewServicoId.setText(servicos.get(listPosition).getId());
+        textViewName.setText(servicos.get(listPosition).getNome());
+        textViewVersion.setText(servicos.get(listPosition).getDescricao());
         ImageButton imageButtonAdicionar = holder.imageButtonAdicionarServico;
         imageButtonAdicionar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ListaItemServicoActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putString("ServicoId","LPXDfRZ3kAJECKw93c4");
+                bundle.putString("ServicoId",textViewServicoId.getText().toString());
                 intent.putExtras(bundle);
                 context.startActivity(intent);
             }
         });
 
-
     }
 
     @Override
     public int getItemCount() {
-        return dataSet.size();
+        return servicos.size();
     }
 }

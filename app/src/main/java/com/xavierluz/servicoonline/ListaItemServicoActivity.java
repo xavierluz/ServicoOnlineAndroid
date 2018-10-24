@@ -20,6 +20,7 @@ import com.xavierluz.servicoonline.fechamento.ServicoFechamento;
 import com.xavierluz.servicoonline.item.servico.ItemServico;
 import com.xavierluz.servicoonline.item.servico.ItemServicoAdapter;
 import com.xavierluz.servicoonline.item.servico.ItemServicoViewHolder;
+import com.xavierluz.servicoonline.servico.ServicoItemServices;
 
 import java.util.List;
 
@@ -28,6 +29,7 @@ public class ListaItemServicoActivity extends AppCompatActivity {
     private RecyclerView recycleViewListaItemServico;
     private RecyclerView.LayoutManager layoutManager;
     private String servicoId;
+    private ServicoItemServices servicoItemServices;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,13 +46,16 @@ public class ListaItemServicoActivity extends AppCompatActivity {
         Bundle extras = intent.getExtras();
         //Extracting the stored data from the bundle
         this.servicoId = extras.getString("ServicoId");
-        Toast.makeText(this, "Selected Item: " + servicoId, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Selected Item: " + servicoId, Toast.LENGTH_SHORT).show();
 
         TextView textViewValorTotal = (TextView) findViewById(R.id.textViewValorTotalServicoPrestado);
         textViewValorTotal.setText("0.00");
         this.recycleViewListaItemServico = (RecyclerView) findViewById(R.id.recycleViewListaItemServico);
         this.recycleViewListaItemServico.setHasFixedSize(true);
 
+        servicoItemServices = ServicoItemServices.createRecycleViewServicoItem(this,this.recycleViewListaItemServico,this.servicoId);
+        servicoItemServices.setServicos();
+        /*
         layoutManager = new LinearLayoutManager(this);
         this.recycleViewListaItemServico.setLayoutManager(layoutManager);
         this.recycleViewListaItemServico.setItemAnimator(new DefaultItemAnimator());
@@ -61,11 +66,11 @@ public class ListaItemServicoActivity extends AppCompatActivity {
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this,
                 LinearLayoutManager.VERTICAL, false);
         this.recycleViewListaItemServico.setLayoutManager(linearLayoutManager);
-
+        /*
         List<ItemServico> itemServicos = ItemServico.getItensServicos(servicoId);
         Log.i("Count:", Integer.toString(itemServicos.size()));
         this.recycleViewListaItemServico.setAdapter(new ItemServicoAdapter(itemServicos,this));
-
+        */
         ImageButton imageButtonSalvar =(ImageButton) findViewById(R.id.imgButtonSalvarServicoPrestado);
 
         imageButtonSalvar.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +82,7 @@ public class ListaItemServicoActivity extends AppCompatActivity {
                     if (viewHolder != null && viewHolder instanceof ItemServicoViewHolder) {
                             final ItemServicoViewHolder itemServicoViewHolder = (ItemServicoViewHolder) viewHolder;
                         if(itemServicoViewHolder.chkItemServicoSelecionado.isChecked()){
-                            Toast.makeText(view.getContext(), "Selected Item: " + itemServicoViewHolder.itemServicoId, Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(view.getContext(), "Selected Item: " + itemServicoViewHolder.itemServicoId, Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
@@ -85,6 +90,23 @@ public class ListaItemServicoActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Dispatch onResume() to fragments.  Note that for better inter-operation
+     * with older versions of the platform, at the point of this call the
+     * fragments attached to the activity are <em>not</em> resumed.  This means
+     * that in some cases the previous state may still be saved, not allowing
+     * fragment transactions that modify the state.  To correctly interact
+     * with fragments in their proper state, you should instead override
+     * {@link #onResumeFragments()}.
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        servicoItemServices = ServicoItemServices.createRecycleViewServicoItem(this,this.recycleViewListaItemServico,this.servicoId);
+        servicoItemServices.setServicos();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_lista_item_servico, menu);
@@ -97,7 +119,7 @@ public class ListaItemServicoActivity extends AppCompatActivity {
             finish();
             return true;
         }
-        Toast.makeText(this, "Selected Item: " +item.getTitle(), Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, "Selected Item: " +item.getTitle(), Toast.LENGTH_SHORT).show();
         switch (item.getItemId()) {
             case R.id.search_item:
                 // do your code
@@ -115,8 +137,8 @@ public class ListaItemServicoActivity extends AppCompatActivity {
     private void abrirCadastroItemServicoActivity(){
         Intent intent = new Intent(this, ItemServicoActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putInt("ServicoId",1);
-        intent.putExtra("Servico",bundle);
+        bundle.putString("ServicoId",this.servicoId);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 

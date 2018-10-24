@@ -49,7 +49,7 @@
                 android:layout_marginRight="5dp"
                 android:ems="10"
                 android:hint="Digite o nome para o serviço prestado"
-                android:inputType="textPersonName" />
+                android:inputType="textCapSentences|textAutoCorrect|textAutoComplete|textPersonName" />
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
@@ -81,7 +81,7 @@
                 android:layout_marginRight="5dp"
                 android:ems="10"
                 android:hint="Digite os detalhes do serviço"
-                android:inputType="textMultiLine" />
+                android:inputType="textCapSentences|textAutoCorrect|textAutoComplete|textMultiLine" />
 
 
             <ImageButton

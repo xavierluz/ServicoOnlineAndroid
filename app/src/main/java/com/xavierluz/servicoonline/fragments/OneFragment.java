@@ -3,6 +3,7 @@ package com.xavierluz.servicoonline.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,20 +20,24 @@ import com.xavierluz.servicoonline.R;
 import com.xavierluz.servicoonline.RecyclerViewClickListener;
 import com.xavierluz.servicoonline.SimpleDividerItemDecoration;
 import com.xavierluz.servicoonline.SingInActivity;
+import com.xavierluz.servicoonline.servico.Servico;
+import com.xavierluz.servicoonline.servico.ServicoServices;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class OneFragment extends Fragment{
     private static RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private static RecyclerView recyclerView;
-    private static ArrayList<DataModel> data;
+    private List<Servico> servicos;
     public static View.OnClickListener myOnClickListener;
     private static ArrayList<Integer> removedItems;
-
+    private ServicoServices servicoServices;
     public OneFragment() {
         // Required empty public constructor
+
     }
 
     @Override
@@ -46,8 +51,16 @@ public class OneFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View viewOne = inflater.inflate(R.layout.fragment_one, container, false);
+
         recyclerView = (RecyclerView) viewOne.findViewById(R.id.recycleViewServico);
+        getActivity().getApplicationContext();
         recyclerView.setHasFixedSize(true);
+        servicoServices = new ServicoServices(viewOne.getContext(),viewOne,recyclerView);
+        servicoServices.setServicos();
+        //Toast.makeText(viewOne.getContext(), "Selected Item:145", Toast.LENGTH_SHORT).show();
+
+        //servicoServices.setRecyclerView();
+        /*
         myOnClickListener = new MyOnClickListener(viewOne.getContext());
 
         layoutManager = new LinearLayoutManager(viewOne.getContext());
@@ -55,27 +68,29 @@ public class OneFragment extends Fragment{
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         /*recyclerView.addItemDecoration(new SimpleDividerItemDecoration(
                 getActivity().getApplicationContext()
-        ));*/
-
-
-        data = new ArrayList<DataModel>();
-        for (int i = 0; i < MyData.servicoArray.length; i++) {
-            data.add(new DataModel(
-                    MyData.servicoArray[i],
-                    MyData.eslogamArray[i],
-                    MyData.idArray[i],
-                    MyData.imagemArray[i]
-            ));
-        }
+        ));
 
         removedItems = new ArrayList<Integer>();
 
-        adapter = new CustomAdapter(data,this.getContext());
-        recyclerView.setAdapter(adapter);
+        //adapter = new CustomAdapter(servicos,this.getContext());
+        recyclerView.setAdapter(servicoServices.getAdapter());
         recyclerView.setLayoutManager(new LinearLayoutManager(viewOne.getContext(), LinearLayoutManager.VERTICAL, false));
         // Inflate the layout for this fragment
+        */
+
 
         return viewOne;
+    }
+
+    /**
+     * Called when the Fragment is visible to the user.  This is generally
+     * tied to {@link Activity#onStart() Activity.onStart} of the containing
+     * Activity's lifecycle.
+     */
+    @Override
+    public void onStart() {
+        super.onStart();
+
     }
 
     private static class MyOnClickListener implements View.OnClickListener {
@@ -95,7 +110,6 @@ public class OneFragment extends Fragment{
                     = (TextView) viewHolder.itemView.findViewById(R.id.textServicoName);
             String selectedName = (String) textViewName.getText();
 
-            Toast.makeText(context, "Nome do serviço: " + selectedName, Toast.LENGTH_LONG).show();
         }
 
         private void removeItem(View v) {
@@ -112,19 +126,20 @@ public class OneFragment extends Fragment{
                 }
             }
             removedItems.add(selectedItemId);
-            data.remove(selectedItemPosition);
+            //data.remove(selectedItemPosition);
             adapter.notifyItemRemoved(selectedItemPosition);
         }
     }
     private void addRemovedItemToList() {
+        /*
         int addItemAtListPosition = 3;
-        data.add(addItemAtListPosition, new DataModel(
+        servicos.add(addItemAtListPosition, new Servico(
                 MyData.servicoArray[removedItems.get(0)],
                 MyData.eslogamArray[removedItems.get(0)],
                 MyData.idArray[removedItems.get(0)],
                 MyData.imagemArray[removedItems.get(0)]
-        ));
-        adapter.notifyItemInserted(addItemAtListPosition);
+        ));*/
+       // adapter.notifyItemInserted(null);
         removedItems.remove(0);
     }
 }

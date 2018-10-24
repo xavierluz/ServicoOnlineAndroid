@@ -11,6 +11,9 @@ public class ServicoItem {
     private Double preco;
     private String status;
 
+    public ServicoItem(){
+
+    }
     public ServicoItem(String servicoId, String nome, String descricao, Double preco, String status) {
         this.servicoId = servicoId;
         this.descricao = descricao;

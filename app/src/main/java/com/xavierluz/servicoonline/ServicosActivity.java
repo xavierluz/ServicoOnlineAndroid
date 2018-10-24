@@ -36,6 +36,29 @@ public class ServicosActivity extends AppCompatActivity {
             R.drawable.baseline_ballot_white_48,
             R.drawable.baseline_money_white_48
     };
+
+    /**
+     * Dispatch onResume() to fragments.  Note that for better inter-operation
+     * with older versions of the platform, at the point of this call the
+     * fragments attached to the activity are <em>not</em> resumed.  This means
+     * that in some cases the previous state may still be saved, not allowing
+     * fragment transactions that modify the state.  To correctly interact
+     * with fragments in their proper state, you should instead override
+     * {@link #onResumeFragments()}.
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setupViewPager(viewPager);
+        viewPager.getParent().requestDisallowInterceptTouchEvent(true);
+        scrollView =(ScrollView)  findViewById(R.id.scrollView);
+
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
+        setupTabIcons();
+        tabLayout.setTabTextColors(getResources().getColor(android.R.color.white),getResources().getColor(android.R.color.darker_gray));
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,6 +115,14 @@ public class ServicosActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+
+    }
+
     private void setupTabIcons() {
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);

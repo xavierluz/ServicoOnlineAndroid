@@ -16,16 +16,17 @@ import android.widget.Toast;
 
 import com.xavierluz.servicoonline.FechamentoAdapter;
 import com.xavierluz.servicoonline.R;
+import com.xavierluz.servicoonline.servico.ServicoItem;
 
 import java.util.List;
 
 public class ItemServicoAdapter extends RecyclerView.Adapter{
-    private List<ItemServico> itemServicos;
+    private List<ServicoItem> servicoItems;
     private Context context;
     private Double valorTotal=0.0;
-    public ItemServicoAdapter(List<ItemServico> itemServicos, Context context){
+    public ItemServicoAdapter(List<ServicoItem> servicoItems, Context context){
         this.context = context;
-        this.itemServicos = itemServicos;
+        this.servicoItems = servicoItems;
 
     }
     /**
@@ -80,11 +81,11 @@ public class ItemServicoAdapter extends RecyclerView.Adapter{
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         final ItemServicoViewHolder itemServicoViewHolder = (ItemServicoViewHolder) holder;
-        final ItemServico itemServico = this.itemServicos.get(position);
-        Log.i("ListaItemServico", Integer.toString(this.itemServicos.size()));
-        itemServicoViewHolder.textNomeItemServico.setText(itemServico.getNomeItemServico().toString());
-        itemServicoViewHolder.textDescricaoItemServico.setText(itemServico.getDescricaoItemServico().toString());
-        itemServicoViewHolder.textPrecoItemServico.setText(FechamentoAdapter.formatarMoeda(itemServico.getPrecoItemServico()));
+        final ServicoItem servicoItem = this.servicoItems.get(position);
+        Log.i("ListaItemServico", Integer.toString(this.servicoItems.size()));
+        itemServicoViewHolder.textNomeItemServico.setText(servicoItem.getNome().toString());
+        itemServicoViewHolder.textDescricaoItemServico.setText(servicoItem.getDescricao().toString());
+        itemServicoViewHolder.textPrecoItemServico.setText(FechamentoAdapter.formatarMoeda(servicoItem.getPreco()));
         CheckBox checkBoxtemServicoSelecionado = (holder.itemView.findViewById(R.id.checkItemSevicoSelecionar));
         checkBoxtemServicoSelecionado.setText(itemServicoViewHolder.textPrecoItemServico.getText().toString());
         itemServicoViewHolder.chkItemServicoSelecionado.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -97,7 +98,7 @@ public class ItemServicoAdapter extends RecyclerView.Adapter{
                 Double _valor = Double.parseDouble(textViewValorTotal.getText().toString().replace(",",".").replace("R$","").replace(" ",""));
 
                 if (itemServicoViewHolder.chkItemServicoSelecionado.isChecked()) {
-                    itemServicoViewHolder.itemServicoId = itemServico.getItemServicoId();
+                    itemServicoViewHolder.itemServicoId = servicoItem.getServicoId();
                     /*itemServico.somarPreco(valorTotalDoServico);
                     Toast.makeText(context, "Soma Valor Total: " + Double.toString(_valor), Toast.LENGTH_SHORT).show();
                     Toast.makeText(context, "soma Preço: " + Double.toString(valorDoServico), Toast.LENGTH_SHORT).show();*/
@@ -105,7 +106,7 @@ public class ItemServicoAdapter extends RecyclerView.Adapter{
                 }else{
                     valorTotal = _valor - valorDoServico;
                 }
-                Log.i("ValorTotalServico",FechamentoAdapter.formatarMoeda(itemServico.getValorDoServico()));
+                Log.i("ValorTotalServico",FechamentoAdapter.formatarMoeda(servicoItem.getPreco()));
 
                 textViewValorTotal.setText(FechamentoAdapter.formatarMoeda(valorTotal));
             }
@@ -136,7 +137,7 @@ public class ItemServicoAdapter extends RecyclerView.Adapter{
      */
     @Override
     public int getItemCount() {
-        return this.itemServicos.size();
+        return this.servicoItems.size();
     }
     /**
      * Return the stable ID for the item at <code>position</code>. If {@link #hasStableIds()}
