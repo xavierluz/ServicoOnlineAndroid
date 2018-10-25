@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.xavierluz.servicoonline.prestados.ServicoPrestado;
 import com.xavierluz.servicoonline.prestados.ServicoPrestadoViewHolder;
@@ -74,7 +75,7 @@ public class PrestadoAdapter extends RecyclerView.Adapter{
         ServicoPrestado servicoPrestado = servicosPrestados.get(position);
         servicoPrestadoViewHolder.nomeServico.setText(servicoPrestado.getNomeServico());
         servicoPrestadoViewHolder.nomeCliente.setText(servicoPrestado.getNomeCliente());
-        servicoPrestadoViewHolder.servicoValorCobrado.setText(Double.toString(servicoPrestado.getServicoValorCobrado()));
+       // servicoPrestadoViewHolder.servicoValorCobrado.setText(limparCaracteresInvalidos(servicoPrestado.getServicoValorCobrado().toString()).toString());
         servicoPrestadoViewHolder.descricaoServico.setText(servicoPrestado.getDescricaoServico());
         servicoPrestadoViewHolder.servicoStatus.setText(servicoPrestado.getStatus());
     }
@@ -88,4 +89,8 @@ public class PrestadoAdapter extends RecyclerView.Adapter{
     public int getItemCount() {
         return this.servicosPrestados.size();
     }
+    private Double limparCaracteresInvalidos(String valor){
+        return Double.parseDouble(valor.replace(".","").replace(",",".").replace("R$",""));
+    }
 }
+

@@ -12,14 +12,14 @@ public class ItemServicoViewHolder extends RecyclerView.ViewHolder  {
     public final TextView textDescricaoItemServico;
     public final TextView textPrecoItemServico;
     public final CheckBox chkItemServicoSelecionado;
-    public String itemServicoId;
+    public final TextView itemServicoId;
     public ItemServicoViewHolder(View itemView) {
         super(itemView);
         this.textNomeItemServico = (TextView) itemView.findViewById(R.id.textNomeItemServicoDaLista);
         this.textDescricaoItemServico = (TextView) itemView.findViewById(R.id.textItemDescricaoServicoLista);
         this.textPrecoItemServico = (TextView) itemView.findViewById(R.id.textPrecoItemServicoLista);
         this.chkItemServicoSelecionado = (CheckBox) itemView.findViewById(R.id.checkItemSevicoSelecionar);
-        this.itemServicoId="0";
+        this.itemServicoId= (TextView) itemView.findViewById(R.id.textViewItemServicoId);
         this.setIsRecyclable(true);
     }
 }

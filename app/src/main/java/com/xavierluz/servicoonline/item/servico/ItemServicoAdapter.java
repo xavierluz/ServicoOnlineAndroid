@@ -88,6 +88,8 @@ public class ItemServicoAdapter extends RecyclerView.Adapter{
         itemServicoViewHolder.textPrecoItemServico.setText(FechamentoAdapter.formatarMoeda(servicoItem.getPreco()));
         CheckBox checkBoxtemServicoSelecionado = (holder.itemView.findViewById(R.id.checkItemSevicoSelecionar));
         checkBoxtemServicoSelecionado.setText(itemServicoViewHolder.textPrecoItemServico.getText().toString());
+        itemServicoViewHolder.itemServicoId.setText(servicoItem.getId());
+
         itemServicoViewHolder.chkItemServicoSelecionado.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -95,10 +97,10 @@ public class ItemServicoAdapter extends RecyclerView.Adapter{
                 View view = viewListaItensServico.findViewById(R.id.layoutListaItensDoServico);
                 Double valorDoServico = FechamentoAdapter.formatoDecimalSemTipoMoeda(itemServicoViewHolder.textPrecoItemServico.getText().toString());
                 TextView textViewValorTotal =(TextView) view.findViewById(R.id.textViewValorTotalServicoPrestado);
-                Double _valor = Double.parseDouble(textViewValorTotal.getText().toString().replace(",",".").replace("R$","").replace(" ",""));
+                Double _valor = limparCaracteresInvalidos(textViewValorTotal.getText().toString());
 
                 if (itemServicoViewHolder.chkItemServicoSelecionado.isChecked()) {
-                    itemServicoViewHolder.itemServicoId = servicoItem.getServicoId();
+                    itemServicoViewHolder.itemServicoId.setText(servicoItem.getServicoId());
                     /*itemServico.somarPreco(valorTotalDoServico);
                     Toast.makeText(context, "Soma Valor Total: " + Double.toString(_valor), Toast.LENGTH_SHORT).show();
                     Toast.makeText(context, "soma Preço: " + Double.toString(valorDoServico), Toast.LENGTH_SHORT).show();*/
@@ -151,5 +153,7 @@ public class ItemServicoAdapter extends RecyclerView.Adapter{
     public long getItemId(int position) {
         return position;
     }
-
+    private Double limparCaracteresInvalidos(String valor){
+        return Double.parseDouble(valor.replace(".","").replace(",",".").replace("R$",""));
+    }
 }

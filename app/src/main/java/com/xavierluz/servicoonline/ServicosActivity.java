@@ -179,6 +179,7 @@ public class ServicosActivity extends AppCompatActivity {
     }
     private void Logout(){
         FirebaseAuth.getInstance().signOut();
+
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }

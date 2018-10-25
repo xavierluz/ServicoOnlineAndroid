@@ -16,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.xavierluz.servicoonline.CustomAdapter;
+import com.xavierluz.servicoonline.ListaItemServicoActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,7 @@ public class ServicoServices {
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView recyclerView;
     private View viewOne;
+    private String servicoNome;
     public ServicoServices(Context context, View viewOne,RecyclerView recyclerView) {
         this.database = FirebaseDatabase.getInstance();
         this.refServicos = database.getReference("servicos");
@@ -38,7 +40,37 @@ public class ServicoServices {
         this.viewOne = viewOne;
         this.recyclerView = recyclerView;
     }
+    public ServicoServices(Context context) {
+        this.database = FirebaseDatabase.getInstance();
+        this.refServicos = database.getReference("servicos");
+        _servicos = new ArrayList<>();
+        this.context = context;
+    }
+    public String getNomeDoServico(String servicoId){
+        Query query = this.refServicos.child(servicoId).orderByChild("nome");
 
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    for (DataSnapshot data : dataSnapshot.getChildren()) {
+                        //Servico servico = data.getValue( Servico.class);
+                        //servico.setId(data.child("servicos").getKey());
+                        //Log.i(TAG, servico.getNome());
+                        servicoNome = dataSnapshot.child("nome").getValue().toString();
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        return servicoNome;
+    }
     public List<Servico> getServicos(){
         return this._servicos;
     }

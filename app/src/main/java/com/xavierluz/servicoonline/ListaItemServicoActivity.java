@@ -20,8 +20,13 @@ import com.xavierluz.servicoonline.fechamento.ServicoFechamento;
 import com.xavierluz.servicoonline.item.servico.ItemServico;
 import com.xavierluz.servicoonline.item.servico.ItemServicoAdapter;
 import com.xavierluz.servicoonline.item.servico.ItemServicoViewHolder;
+import com.xavierluz.servicoonline.prestados.ServicoPrestado;
+import com.xavierluz.servicoonline.prestados.ServicoPrestadoServices;
+import com.xavierluz.servicoonline.servico.ServicoItem;
 import com.xavierluz.servicoonline.servico.ServicoItemServices;
+import com.xavierluz.servicoonline.servico.ServicoServices;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListaItemServicoActivity extends AppCompatActivity {
@@ -30,6 +35,7 @@ public class ListaItemServicoActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private String servicoId;
     private ServicoItemServices servicoItemServices;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +54,7 @@ public class ListaItemServicoActivity extends AppCompatActivity {
         this.servicoId = extras.getString("ServicoId");
         //Toast.makeText(this, "Selected Item: " + servicoId, Toast.LENGTH_SHORT).show();
 
-        TextView textViewValorTotal = (TextView) findViewById(R.id.textViewValorTotalServicoPrestado);
+        final TextView textViewValorTotal = (TextView) findViewById(R.id.textViewValorTotalServicoPrestado);
         textViewValorTotal.setText("0.00");
         this.recycleViewListaItemServico = (RecyclerView) findViewById(R.id.recycleViewListaItemServico);
         this.recycleViewListaItemServico.setHasFixedSize(true);
@@ -76,16 +82,24 @@ public class ListaItemServicoActivity extends AppCompatActivity {
         imageButtonSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                List<ItemServico> servicosItens = new ArrayList<ItemServico>();
+
                 for (int i = recycleViewListaItemServico.getChildCount() - 1; i >= 0; i--) {
                     final View view = recycleViewListaItemServico.getChildAt(i);
                     RecyclerView.ViewHolder viewHolder = recycleViewListaItemServico.getChildViewHolder(view);
                     if (viewHolder != null && viewHolder instanceof ItemServicoViewHolder) {
-                            final ItemServicoViewHolder itemServicoViewHolder = (ItemServicoViewHolder) viewHolder;
+                        final ItemServicoViewHolder itemServicoViewHolder = (ItemServicoViewHolder) viewHolder;
                         if(itemServicoViewHolder.chkItemServicoSelecionado.isChecked()){
-                            //Toast.makeText(view.getContext(), "Selected Item: " + itemServicoViewHolder.itemServicoId, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(view.getContext(), "Selected Item selecionado: " + itemServicoViewHolder.itemServicoId.getText().toString(), Toast.LENGTH_SHORT).show();
+                            servicosItens.add(createItemServicos(itemServicoViewHolder));
                         }
                     }
                 }
+
+                ServicoPrestado servicoPrestado = ServicoPrestado.getInstanceParaSalvarServicoPrestado(servicoId);
+                servicoPrestado.setServicoValor(limparCaracteresInvalidos(textViewValorTotal.getText().toString()));
+
+                //salvarSevicoPrestado(servicoPrestado,servicosItens);
 
             }
         });
@@ -142,7 +156,29 @@ public class ListaItemServicoActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void salvarSevicoPrestado(List<ItemServicoViewHolder> itemServicos){
+    private void salvarSevicoPrestado(ServicoPrestado servicoPrestado,List<ItemServico> itemServicos) {
+        ServicoPrestadoServices servicoPrestadoServices = ServicoPrestadoServices.createServicoPrestado(this);
 
+        servicoPrestadoServices.Salvar(servicoPrestado,itemServicos);
+        Toast.makeText(ListaItemServicoActivity.this, "Serviço salvo com sucesso", Toast.LENGTH_SHORT).show();
+
+    }
+    private ItemServico createItemServicos(ItemServicoViewHolder itemServicoViewHolder){
+
+        String itemServicoId = itemServicoViewHolder.itemServicoId.getText().toString();
+        String itemServicoNome =  itemServicoViewHolder.textNomeItemServico.getText().toString();
+        Double itemServicoPreco = limparCaracteresInvalidos(itemServicoViewHolder.textPrecoItemServico.getText().toString());
+
+        ItemServico itemServico = new ItemServico(this.servicoId);
+        itemServico.setAtivo(true);
+        itemServico.setNomeItemServico(itemServicoNome);
+        itemServico.setItemServicoId(itemServicoId);
+        itemServico.setPrecoItemServico(itemServicoPreco);
+        return itemServico;
+    }
+    private Double limparCaracteresInvalidos(String valor){
+       // Toast.makeText(ListaItemServicoActivity.this, valor, Toast.LENGTH_SHORT).show();
+        Log.i("limparCaracteres",valor);
+        return Double.parseDouble(valor.replace(".","").replace(",",".").replace("R$",""));
     }
 }

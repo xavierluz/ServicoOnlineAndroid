@@ -49,7 +49,12 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:orientation="vertical">
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:id="@+id/textViewItemServicoId"
+                />
             <TextView
                 android:id="@+id/textNomeItemServicoDaLista"
                 android:layout_width="match_parent"

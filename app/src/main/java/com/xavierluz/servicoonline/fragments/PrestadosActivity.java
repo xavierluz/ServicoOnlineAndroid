@@ -14,6 +14,7 @@ import com.xavierluz.servicoonline.PrestadoAdapter;
 import com.xavierluz.servicoonline.R;
 import com.xavierluz.servicoonline.SimpleDividerItemDecoration;
 import com.xavierluz.servicoonline.prestados.ServicoPrestado;
+import com.xavierluz.servicoonline.prestados.ServicoPrestadoServices;
 
 import java.util.List;
 
@@ -42,6 +43,7 @@ public class PrestadosActivity extends Fragment {
         this.recycleViewPrestados = (RecyclerView) view.findViewById(R.id.recycleViewPrestados);
         this.recycleViewPrestados.setHasFixedSize(true);
 
+        /*
         layoutManager = new LinearLayoutManager(view.getContext());
         this.recycleViewPrestados.setLayoutManager(layoutManager);
         this.recycleViewPrestados.setItemAnimator(new DefaultItemAnimator());
@@ -53,6 +55,9 @@ public class PrestadosActivity extends Fragment {
         List<ServicoPrestado> servicosPrestados = ServicoPrestado.getServicosPrestados();
         Log.i("Count:", Integer.toString(servicosPrestados.size()));
         this.recycleViewPrestados.setAdapter(new PrestadoAdapter(servicosPrestados,getActivity().getApplicationContext()));
+        */
+        ServicoPrestadoServices servicoPrestadoServices = ServicoPrestadoServices.createRecycleViewServicoPrestado(view.getContext(), this.recycleViewPrestados);
+        servicoPrestadoServices.setServicosPrestado();
         return view;
     }
 }

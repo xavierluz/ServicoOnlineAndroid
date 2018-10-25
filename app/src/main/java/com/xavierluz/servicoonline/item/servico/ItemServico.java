@@ -1,10 +1,11 @@
 package com.xavierluz.servicoonline.item.servico;
 
+import com.google.firebase.database.IgnoreExtraProperties;
 import com.xavierluz.servicoonline.prestados.ServicoPrestado;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@IgnoreExtraProperties
 public class ItemServico {
 
     private String itemServicoId;
@@ -14,12 +15,15 @@ public class ItemServico {
     private double precoItemServico;
     private boolean ativo;
     private String status;
-    private double valorDoServico;
+    //private double valorDoServico;
 
+    public ItemServico(){
 
-    public double getValorDoServico() {
-        return valorDoServico;
     }
+
+   // public double getValorDoServico() {
+    //    return valorDoServico;
+    //}
 
 
     public ItemServico(String servicoId) {
@@ -82,14 +86,7 @@ public class ItemServico {
         this.status = status;
     }
 
-    public void somarPreco(double preco){
-        this.valorDoServico =this.valorDoServico +  preco;
-    }
-    public void subtrairPreco(double preco) {
-        this.valorDoServico =- preco;
-        if (this.valorDoServico < 0)
-            this.valorDoServico = 0;
-    }
+
     public static List<ItemServico> getItensServicos(String servicoId){
         ItemServico itemServico =  null;
         List<ItemServico>  itemServicos =  new ArrayList<ItemServico>();

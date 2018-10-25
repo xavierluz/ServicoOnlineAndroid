@@ -91,6 +91,7 @@ public class ServicoItemServices {
                         //Toast.makeText(context, "Selected Item: " + data.getKey(), Toast.LENGTH_SHORT).show();
                         ServicoItem servicoItem = data.getValue(ServicoItem.class);
                         servicoItem.setServicoId(data.child("servicoItem").getKey());
+                        servicoItem.setId(data.getKey());
                         servicoItems.add(servicoItem);
                         Log.i(TAG, servicoItem.getNome());
                     }

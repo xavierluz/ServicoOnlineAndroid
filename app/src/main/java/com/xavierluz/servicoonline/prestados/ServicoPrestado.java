@@ -1,30 +1,67 @@
 package com.xavierluz.servicoonline.prestados;
 
-import android.support.annotation.NonNull;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Currency;
-import java.util.Iterator;
+import com.google.firebase.database.IgnoreExtraProperties;
+import com.xavierluz.servicoonline.item.servico.ItemServico;
+import com.xavierluz.servicoonline.item.servico.Servico;
 import java.util.List;
-import java.util.ListIterator;
 
+
+@IgnoreExtraProperties
 public class ServicoPrestado {
-    private Integer servicoId;
+    private String id;
+    private String servicoId;
     private String nomeServico;
+    private String servicoItemId;
+    private String servicoItemNome;
+    private Double servicoItemPreco;
     private String descricaoServico;
     private String nomeCliente;
-    private double servicoValor;
-    private double servicoValorCobrado;
+    private Double servicoValor;
+    private Double servicoValorCobrado;
     private String Status;
-    public ServicoPrestado() {
+    private Servico servico;
+    private List<Servico> servicos;
+    private List<ItemServico> servicoItens;
+    private String dataServicoCadastrado;
+
+    public ServicoPrestado(){}
+    private ServicoPrestado(String servicoId) {
+        this.servicoId = servicoId;
     }
 
-    public Integer getServicoId() {
+    public static ServicoPrestado getInstanceParaSalvarServicoPrestado(String servicoId){
+        return new ServicoPrestado(servicoId);
+    }
+
+    public String getDataServicoCadastrado() {
+        return dataServicoCadastrado;
+    }
+
+    public void setDataServicoCadastrado(String dataServicoCadastrado) {
+        this.dataServicoCadastrado = dataServicoCadastrado;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public Servico getServico() {
+        return servico;
+    }
+
+    public void setServico(Servico servico) {
+        this.servico = servico;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getServicoId() {
         return servicoId;
     }
 
-    public void setServicoId(Integer servicoId) {
+    public void setServicoId(String servicoId) {
         this.servicoId = servicoId;
     }
 
@@ -34,6 +71,30 @@ public class ServicoPrestado {
 
     public void setNomeServico(String nomeServico) {
         this.nomeServico = nomeServico;
+    }
+
+    public String getServicoItemId() {
+        return servicoItemId;
+    }
+
+    public void setServicoItemId(String servicoItemId) {
+        this.servicoItemId = servicoItemId;
+    }
+
+    public String getServicoItemNome() {
+        return servicoItemNome;
+    }
+
+    public void setServicoItemNome(String servicoItemNome) {
+        this.servicoItemNome = servicoItemNome;
+    }
+
+    public Double getServicoItemPreco() {
+        return servicoItemPreco;
+    }
+
+    public void setServicoItemPreco(Double servicoItemPreco) {
+        this.servicoItemPreco = servicoItemPreco;
     }
 
     public String getDescricaoServico() {
@@ -52,21 +113,22 @@ public class ServicoPrestado {
         this.nomeCliente = nomeCliente;
     }
 
-    public double getServicoValor() {
+    public Double getServicoValor() {
         return servicoValor;
     }
 
-    public void setServicoValor(double servicoValor) {
+    public void setServicoValor(Double servicoValor) {
         this.servicoValor = servicoValor;
     }
 
-    public double getServicoValorCobrado() {
+    public Double getServicoValorCobrado() {
         return servicoValorCobrado;
     }
 
-    public void setServicoValorCobrado(double servicoValorCobrado) {
+    public void setServicoValorCobrado(Double servicoValorCobrado) {
         this.servicoValorCobrado = servicoValorCobrado;
     }
+
     public String getStatus() {
         return Status;
     }
@@ -74,20 +136,13 @@ public class ServicoPrestado {
     public void setStatus(String status) {
         Status = status;
     }
-    public static List<ServicoPrestado> getServicosPrestados(){
-        ServicoPrestado servicoPrestado =  null;
-        List<ServicoPrestado> servicosPrestados =  new ArrayList<ServicoPrestado>();
-        for(Integer i = 1; i < 10; i++) {
-            servicoPrestado = new ServicoPrestado();
 
-            servicoPrestado.setServicoId(i);
-            servicoPrestado.setNomeServico("Corte de Cabelo");
-            servicoPrestado.setNomeCliente("Celso Xavier");
-            servicoPrestado.setDescricaoServico("Corte de cabelo usando máquina");
-            servicoPrestado.setServicoValorCobrado(50.0);
-            servicoPrestado.setStatus("Receber");
-            servicosPrestados.add(servicoPrestado);
-        }
-        return servicosPrestados;
+    public List<Servico> getServicos() {
+        return servicos;
     }
+
+    public List<ItemServico> getServicoItens() {
+        return servicoItens;
+    }
+
 }
