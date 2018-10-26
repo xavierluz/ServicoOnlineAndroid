@@ -8,7 +8,7 @@ import java.util.List;
 @IgnoreExtraProperties
 public class ItemServico {
 
-    private String itemServicoId;
+    private String id;
     private String servicoId;
     private String nomeItemServico;
     private String descricaoItemServico;
@@ -30,12 +30,12 @@ public class ItemServico {
         this.servicoId = servicoId;
     }
 
-    public String getItemServicoId() {
-        return itemServicoId;
+    public String getId() {
+        return id;
     }
 
-    public void setItemServicoId(String itemServicoId) {
-        this.itemServicoId = itemServicoId;
+    public void setId(String itemServicoId) {
+        this.id = itemServicoId;
     }
 
     public String getServicoId() {
@@ -92,7 +92,7 @@ public class ItemServico {
         List<ItemServico>  itemServicos =  new ArrayList<ItemServico>();
         for(Integer i = 1; i < 10; i++) {
             itemServico = new ItemServico(servicoId);
-            itemServico.itemServicoId = i.toString();
+            itemServico.id = i.toString();
             itemServico.ativo = true;
             itemServico.descricaoItemServico = "Corte de cabelo usando tesoura de 7 pontos.";
             itemServico.nomeItemServico = "Corte Tipo 7";

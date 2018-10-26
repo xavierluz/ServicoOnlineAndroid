@@ -7,7 +7,7 @@
     android:background="@color/colorBackgroundFundo"
     android:theme="@style/AppTheme"
     android:orientation="vertical"
-    android:id="@+id/layoutActivityCadastroUsuario"
+    android:id="@+id/activity_cadastro_usuario"
     tools:context=".CadastroUsuarioActivity">
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbarCastroUsuario"

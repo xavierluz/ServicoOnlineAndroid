@@ -1,6 +1,7 @@
 package com.xavierluz.servicoonline;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -49,15 +50,7 @@ public class ServicosActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        setupViewPager(viewPager);
-        viewPager.getParent().requestDisallowInterceptTouchEvent(true);
-        scrollView =(ScrollView)  findViewById(R.id.scrollView);
-
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
-        setupTabIcons();
-        tabLayout.setTabTextColors(getResources().getColor(android.R.color.white),getResources().getColor(android.R.color.darker_gray));
-    }
+         }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +72,7 @@ public class ServicosActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
         setupTabIcons();
         tabLayout.setTabTextColors(getResources().getColor(android.R.color.white),getResources().getColor(android.R.color.darker_gray));
+        /*
         viewPager.setOnTouchListener(new View.OnTouchListener() {
 
             int dragthreshold = 30;
@@ -113,13 +107,39 @@ public class ServicosActivity extends AppCompatActivity {
                 return false;
             }
         });
-
+        */
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
+
+    }
+
+    /**
+     * Called after {@link #onStop} when the current activity is being
+     * re-displayed to the user (the user has navigated back to it).  It will
+     * be followed by {@link #onStart} and then {@link #onResume}.
+     * <p>
+     * <p>For activities that are using raw {@link Cursor} objects (instead of
+     * creating them through
+     * {@link #managedQuery(Uri, String[], String, String[], String)},
+     * this is usually the place
+     * where the cursor should be requeried (because you had deactivated it in
+     * {@link #onStop}.
+     * <p>
+     * <p><em>Derived classes must call through to the super class's
+     * implementation of this method.  If they do not, an exception will be
+     * thrown.</em></p>
+     *
+     * @see #onStop
+     * @see #onStart
+     * @see #onResume
+     */
+    @Override
+    protected void onRestart() {
+        super.onRestart();
 
     }
 

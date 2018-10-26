@@ -1,6 +1,7 @@
 package com.xavierluz.servicoonline;
 
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -90,7 +91,7 @@ public class ListaItemServicoActivity extends AppCompatActivity {
                     if (viewHolder != null && viewHolder instanceof ItemServicoViewHolder) {
                         final ItemServicoViewHolder itemServicoViewHolder = (ItemServicoViewHolder) viewHolder;
                         if(itemServicoViewHolder.chkItemServicoSelecionado.isChecked()){
-                            Toast.makeText(view.getContext(), "Selected Item selecionado: " + itemServicoViewHolder.itemServicoId.getText().toString(), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(view.getContext(), "Selected Item selecionado: " + itemServicoViewHolder.itemServicoId.getText().toString(), Toast.LENGTH_SHORT).show();
                             servicosItens.add(createItemServicos(itemServicoViewHolder));
                         }
                     }
@@ -99,10 +100,17 @@ public class ListaItemServicoActivity extends AppCompatActivity {
                 ServicoPrestado servicoPrestado = ServicoPrestado.getInstanceParaSalvarServicoPrestado(servicoId);
                 servicoPrestado.setServicoValor(limparCaracteresInvalidos(textViewValorTotal.getText().toString()));
 
-                //salvarSevicoPrestado(servicoPrestado,servicosItens);
+                salvarSevicoPrestado(servicoPrestado,servicosItens);
 
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        servicoItemServices = ServicoItemServices.createRecycleViewServicoItem(this,this.recycleViewListaItemServico,this.servicoId);
+        servicoItemServices.setServicos();
     }
 
     /**
@@ -160,7 +168,8 @@ public class ListaItemServicoActivity extends AppCompatActivity {
         ServicoPrestadoServices servicoPrestadoServices = ServicoPrestadoServices.createServicoPrestado(this);
 
         servicoPrestadoServices.Salvar(servicoPrestado,itemServicos);
-        Toast.makeText(ListaItemServicoActivity.this, "Serviço salvo com sucesso", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(ListaItemServicoActivity.this, "Serviço salvo com sucesso", Toast.LENGTH_SHORT).show();
+        Snackbar.make(findViewById(R.id.layoutListaItensDoServico), "Serviço salvo com sucesso.", Snackbar.LENGTH_LONG).show();
 
     }
     private ItemServico createItemServicos(ItemServicoViewHolder itemServicoViewHolder){
@@ -172,7 +181,7 @@ public class ListaItemServicoActivity extends AppCompatActivity {
         ItemServico itemServico = new ItemServico(this.servicoId);
         itemServico.setAtivo(true);
         itemServico.setNomeItemServico(itemServicoNome);
-        itemServico.setItemServicoId(itemServicoId);
+        itemServico.setId(itemServicoId);
         itemServico.setPrecoItemServico(itemServicoPreco);
         return itemServico;
     }

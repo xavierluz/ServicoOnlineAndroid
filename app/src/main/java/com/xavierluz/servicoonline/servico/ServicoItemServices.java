@@ -31,20 +31,19 @@ public class ServicoItemServices {
     private Context context;
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView recyclerView;
-
+    private String servicoId;
     private ServicoItemServices(Context context,RecyclerView recyclerView, String servicoId) {
         this.database = FirebaseDatabase.getInstance();
         this.refServicos = database.getReference("servicos").child(servicoId).child("servicoItem");
         servicoItems = new ArrayList<>();
         this.context = context;
-
+        this.servicoId = servicoId;
         this.recyclerView = recyclerView;
     }
     private ServicoItemServices(Context context, String servicoId) {
         this.database = FirebaseDatabase.getInstance();
         this.refServicos = database.getReference("servicos").child(servicoId).child("servicoItem");
         this.context = context;
-        this.recyclerView = recyclerView;
     }
 
     public static ServicoItemServices createRecycleViewServicoItem(Context context,RecyclerView recyclerView, String servicoId){
@@ -89,8 +88,12 @@ public class ServicoItemServices {
                 if(dataSnapshot.exists()){
                     for (DataSnapshot data : dataSnapshot.getChildren()) {
                         //Toast.makeText(context, "Selected Item: " + data.getKey(), Toast.LENGTH_SHORT).show();
+                        Log.i("dataSnapshotItem",data.getKey());
                         ServicoItem servicoItem = data.getValue(ServicoItem.class);
-                        servicoItem.setServicoId(data.child("servicoItem").getKey());
+                       // Toast.makeText(context, "Selected Item: " + data.getKey(), Toast.LENGTH_SHORT).show();
+                        Log.i("ServicoItemData",servicoItem.getNome());
+                        Log.i("ServicoItemId",data.child("servicoItem").getKey());
+                        servicoItem.setServicoId(servicoId);
                         servicoItem.setId(data.getKey());
                         servicoItems.add(servicoItem);
                         Log.i(TAG, servicoItem.getNome());

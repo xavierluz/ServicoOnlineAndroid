@@ -1,6 +1,7 @@
 package com.xavierluz.servicoonline;
 
 
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -46,7 +47,9 @@ public class ServicoCadastroActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 adicionarServico(editNomeServico.getText().toString(),editDescricaoServico.getText().toString());
-                Toast.makeText(ServicoCadastroActivity.this, "Serviço cadastrado com sucesso.", Toast.LENGTH_LONG).show();
+                //Toast.makeText(ServicoCadastroActivity.this, "Serviço cadastrado com sucesso.", Toast.LENGTH_LONG).show();
+                Snackbar.make(findViewById(R.id.activity_item_servico_cadastro), "Serviço cadastrado com sucesso.", Snackbar.LENGTH_LONG).show();
+
                 limparCampos();
             }
         });

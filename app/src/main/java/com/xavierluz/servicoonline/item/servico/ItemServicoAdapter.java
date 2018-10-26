@@ -100,7 +100,6 @@ public class ItemServicoAdapter extends RecyclerView.Adapter{
                 Double _valor = limparCaracteresInvalidos(textViewValorTotal.getText().toString());
 
                 if (itemServicoViewHolder.chkItemServicoSelecionado.isChecked()) {
-                    itemServicoViewHolder.itemServicoId.setText(servicoItem.getServicoId());
                     /*itemServico.somarPreco(valorTotalDoServico);
                     Toast.makeText(context, "Soma Valor Total: " + Double.toString(_valor), Toast.LENGTH_SHORT).show();
                     Toast.makeText(context, "soma Preço: " + Double.toString(valorDoServico), Toast.LENGTH_SHORT).show();*/

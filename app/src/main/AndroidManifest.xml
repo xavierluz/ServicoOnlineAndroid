@@ -26,7 +26,8 @@
         <activity android:name=".ServicoCadastroActivity" />
         <activity android:name=".ItemServicoActivity" />
         <activity android:name=".ListaItemServicoActivity" />
-        <activity android:name=".CadastroUsuarioActivity"></activity>
+        <activity android:name=".CadastroUsuarioActivity" />
+        <activity android:name=".DetalheServicoPrestadoActivity"></activity>
     </application>
 
 </manifest>

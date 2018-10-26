@@ -1,6 +1,7 @@
 package com.xavierluz.servicoonline;
 
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -55,7 +56,9 @@ public class ItemServicoActivity extends AppCompatActivity {
                 validarCampos();
                 adicionarServicoItem(servicoId, editNomeItemServico.getText().toString(), editDescricaoItemServico.getText().toString(),limparCaracteresInvalidos(editPrecoSevico.getText().toString()));
                 limparCampos();
-                Toast.makeText(ItemServicoActivity.this, "Item do serviço cadastrado com sucesso.", Toast.LENGTH_LONG).show();
+               // Toast.makeText(ItemServicoActivity.this, "Item do serviço cadastrado com sucesso.", Toast.LENGTH_LONG).show();
+                Snackbar.make(findViewById(R.id.activity_item_servico_cadastro), "Item do serviço cadastrado com sucesso.", Snackbar.LENGTH_LONG).show();
+
             }
         });
         this.mascaraMonetaria = new MascaraMonetaria(editPrecoSevico);

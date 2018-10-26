@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,10 @@ public class OneFragment extends Fragment{
     public static View.OnClickListener myOnClickListener;
     private static ArrayList<Integer> removedItems;
     private ServicoServices servicoServices;
+    private View viewOne;
+    private LayoutInflater inflater;
+    private ViewGroup container;
+    private Bundle savedInstanceState;
     public OneFragment() {
         // Required empty public constructor
 
@@ -47,13 +52,32 @@ public class OneFragment extends Fragment{
 
     }
 
+    /**
+     * Called when the view previously created by {@link #onCreateView} has
+     * been detached from the fragment.  The next time the fragment needs
+     * to be displayed, a new view will be created.  This is called
+     * after {@link #onStop()} and before {@link #onDestroy()}.  It is called
+     * <em>regardless</em> of whether {@link #onCreateView} returned a
+     * non-null view.  Internally it is called after the view's state has
+     * been saved but before it has been removed from its parent.
+     */
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.i("FragrementServico","onDestroyView");
+
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View viewOne = inflater.inflate(R.layout.fragment_one, container, false);
+        this.inflater = inflater;
+        this.container = container;
+        this.savedInstanceState =  savedInstanceState;
+
+        viewOne = inflater.inflate(R.layout.fragment_one, container, false);
 
         recyclerView = (RecyclerView) viewOne.findViewById(R.id.recycleViewServico);
-        getActivity().getApplicationContext();
         recyclerView.setHasFixedSize(true);
         servicoServices = new ServicoServices(viewOne.getContext(),viewOne,recyclerView);
         servicoServices.setServicos();
@@ -90,7 +114,21 @@ public class OneFragment extends Fragment{
     @Override
     public void onStart() {
         super.onStart();
+        Log.i("FragrementServico","onStart");
+        //onCreateView(this.inflater, this.container,this.savedInstanceState);
+    }
 
+    /**
+     * Called when the fragment is visible to the user and actively running.
+     * This is generally
+     * tied to {@link Activity#onResume() Activity.onResume} of the containing
+     * Activity's lifecycle.
+     */
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.i("FragrementServico","onResume");
+        //onCreateView(this.inflater, this.container,this.savedInstanceState);
     }
 
     private static class MyOnClickListener implements View.OnClickListener {

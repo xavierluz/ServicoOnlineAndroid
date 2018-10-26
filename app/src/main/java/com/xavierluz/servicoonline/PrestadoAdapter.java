@@ -73,11 +73,14 @@ public class PrestadoAdapter extends RecyclerView.Adapter{
         ServicoPrestadoViewHolder servicoPrestadoViewHolder =(ServicoPrestadoViewHolder) holder;
 
         ServicoPrestado servicoPrestado = servicosPrestados.get(position);
-        servicoPrestadoViewHolder.nomeServico.setText(servicoPrestado.getNomeServico());
-        servicoPrestadoViewHolder.nomeCliente.setText(servicoPrestado.getNomeCliente());
-       // servicoPrestadoViewHolder.servicoValorCobrado.setText(limparCaracteresInvalidos(servicoPrestado.getServicoValorCobrado().toString()).toString());
-        servicoPrestadoViewHolder.descricaoServico.setText(servicoPrestado.getDescricaoServico());
+        servicoPrestadoViewHolder.nomeServico.setText(servicoPrestado.getServico().getNome());
+        //servicoPrestadoViewHolder.nomeCliente.setText(servicoPrestado.getNomeCliente());
+        servicoPrestadoViewHolder.servicoValorPrestado.setText(FechamentoAdapter.formatarMoeda(servicoPrestado.getServicoValor()));
+        servicoPrestadoViewHolder.descricaoServico.setText(servicoPrestado.getServico().getNome());
         servicoPrestadoViewHolder.servicoStatus.setText(servicoPrestado.getStatus());
+        servicoPrestadoViewHolder.dataServico.setText(servicoPrestado.getDataServicoCadastrado());
+        //Toast.makeText(context, "Selected prestadores: " + servicoPrestado.getNomeServico(), Toast.LENGTH_SHORT).show();
+
     }
 
     /**

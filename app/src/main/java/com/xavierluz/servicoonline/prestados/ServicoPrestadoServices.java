@@ -5,6 +5,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.ChildEventListener;
@@ -36,10 +37,12 @@ public class ServicoPrestadoServices {
     private String servicoNome;
     private ServicoPrestado servicoPrestado;
     private List<ItemServico> itemServicos;
+
     private ServicoPrestadoServices(Context context,RecyclerView recyclerView) {
         this.database = FirebaseDatabase.getInstance();
         this.refServicos = database.getReference("servicosPrestado");
-        servicoPrestados = new ArrayList<>();
+        this.servicoPrestados = new ArrayList<ServicoPrestado>();
+        this.itemServicos = new ArrayList<ItemServico>();
         this.context = context;
         this.recyclerView = recyclerView;
     }
@@ -93,7 +96,7 @@ public class ServicoPrestadoServices {
         servicoPrestado.setServico(servico);
         Calendar calender = Calendar.getInstance();
         Date data = calender.getTime();
-
+        servicoPrestado.setStatus("ABERTO");
         servicoPrestado.setDataServicoCadastrado(getDataFormatadaPadrao(data));
         servicoPrestado.setServicoId(null);
         refServicos.push().setValue(servicoPrestado);
@@ -137,6 +140,15 @@ public class ServicoPrestadoServices {
                     for (DataSnapshot data : dataSnapshot.getChildren()) {
                         //Toast.makeText(context, "Selected Item: " + data.getKey(), Toast.LENGTH_SHORT).show();
                         ServicoPrestado servicoPrestado = data.getValue(ServicoPrestado.class);
+                        Servico servico = data.child("servico").getValue(Servico.class);
+                        /*
+                        for (DataSnapshot dataSerico : data.child("servico").getChildren()) {
+                            ItemServico itemServico = dataSerico.child("itemServicos").getValue(ItemServico.class);
+                            itemServicos.add(itemServico);
+                        }
+                        */
+                        servico.setItemServicos(itemServicos);
+                        servicoPrestado.setServico(servico);
                         servicoPrestado.setServicoId(data.getKey());
                         servicoPrestados.add(servicoPrestado);
                         //Log.i(TAG, servicoPrestado.getDescricaoServico());

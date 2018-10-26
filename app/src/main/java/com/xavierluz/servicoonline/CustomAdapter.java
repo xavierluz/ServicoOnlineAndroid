@@ -84,6 +84,36 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     }
 
+    /**
+     * Return the view type of the item at <code>position</code> for the purposes
+     * of view recycling.
+     * <p>
+     * <p>The default implementation of this method returns 0, making the assumption of
+     * a single view type for the adapter. Unlike ListView adapters, types need not
+     * be contiguous. Consider using id resources to uniquely identify item view types.
+     *
+     * @param position position to query
+     * @return integer value identifying the type of the view needed to represent the item at
+     * <code>position</code>. Type codes need not be contiguous.
+     */
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
+    /**
+     * Return the stable ID for the item at <code>position</code>. If {@link #hasStableIds()}
+     * would return false this method should return {@link #NO_ID}. The default implementation
+     * of this method returns {@link #NO_ID}.
+     *
+     * @param position Adapter position to query
+     * @return the stable ID of the item at position
+     */
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
     @Override
     public int getItemCount() {
         return servicos.size();
