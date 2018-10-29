@@ -86,12 +86,13 @@
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginLeft="2dp"
+                android:layout_height="53dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginTop="0dp"
-                android:layout_marginRight="2dp"
+                android:layout_marginRight="8dp"
                 android:layout_marginBottom="0dp"
-                android:background="@color/colorBackgroundDetalhesValores">
+                android:background="@color/colorBackgroundPrimary"
+                android:padding="0dp">
 
                 <TextView
                     android:id="@+id/textPrecoItemServicoPrestadorDetalhe"
@@ -104,11 +105,12 @@
                     android:padding="2dp"
                     android:text="Valor do item de serviço"
                     android:textAlignment="center"
-                    android:textColor="@color/colorSecondary"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/imgButtonDiminuirItemDetalhe"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <ImageButton
                     android:id="@+id/imgButtonAdionarItemDetalhe"
@@ -117,10 +119,11 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:background="@color/colorBackgroundFundoFundoBotao"
+                    android:background="@color/colorAccent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
                     app:srcCompat="@drawable/baseline_add_circle_white_24" />
 
                 <ImageButton
@@ -130,10 +133,11 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
-                    android:background="@color/colorBackgroundFundoFundoBotao"
+                    android:background="@color/colorAccent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
                     app:srcCompat="@drawable/baseline_remove_circle_white_24" />
 
                 <TextView
@@ -145,47 +149,51 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="2dp"
                     android:text="Quantidade"
-                    android:textColor="@color/colorSecondary"
+                    android:textColor="@color/colorPrimary"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/textPrecoItemServicoPrestadorDetalhe"
                     app:layout_constraintStart_toEndOf="@+id/imgButtonAdionarItemDetalhe"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
                     android:id="@+id/textValorTotalDoItemDetalhe"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="4dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="2dp"
+                    android:layout_marginBottom="8dp"
                     android:text="Valor total do item"
                     android:textAlignment="center"
-                    android:textColor="@color/colorSecondary"
+                    android:textColor="@color/colorTituloPrimary"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/imgButtonDiminuirItemDetalhe"
                     app:layout_constraintStart_toEndOf="@+id/imgButtonAdionarItemDetalhe"
-                    app:layout_constraintTop_toBottomOf="@+id/textPrecoItemServicoPrestadorDetalhe" />
+                    app:layout_constraintTop_toBottomOf="@+id/textPrecoItemServicoPrestadorDetalhe"
+                    app:layout_constraintVertical_bias="0.0" />
             </android.support.constraint.ConstraintLayout>
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="46dp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="2dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginRight="2dp"
-                android:background="@color/colorBackgroundFundoFundoBotao"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="2dp"
+                android:background="@color/colorBackgroundFundo"
                 android:gravity="center_horizontal"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="0dp">
 
 
                 <ImageButton
                     android:id="@+id/imgButtonConfirmarDescontoDetalhe"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="0dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
@@ -227,6 +235,7 @@
                     android:layout_marginBottom="8dp"
                     android:button="@android:drawable/checkbox_on_background"
                     android:checked="true"
+                    android:focusableInTouchMode="true"
                     android:text="R$"
                     android:textAlignment="center"
                     android:textColor="@color/colorPrimaryDark"
@@ -256,19 +265,34 @@
 
             </android.support.constraint.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/textValorItemCobradoDetalhe"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="Valor cobrado"
-                android:textAlignment="center"
-                android:textColor="@color/colorPrimaryDark"
-                android:textStyle="bold" />
         </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:cardBackgroundColor="@color/colorBackgroundFundoFundoBotao"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_view_listaServicos">
+
+        <ImageButton
+            android:id="@+id/imgButtonDeletarItemServico"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginBottom="2dp"
+            android:background="@color/colorButtonFundoServico"
+            app:srcCompat="@drawable/baseline_clear_white_48" />
     </android.support.v7.widget.CardView>
 
 </android.support.constraint.ConstraintLayout>

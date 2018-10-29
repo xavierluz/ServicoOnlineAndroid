@@ -3,6 +3,7 @@ package com.xavierluz.servicoonline.prestados;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -17,6 +18,10 @@ public class ServicoItemPrestadoViewHolder extends RecyclerView.ViewHolder {
     public final RadioButton rdoDescontoValor;
     public final EditText textValorDoDescontoDoItem;
     public final TextView textValorCobradoDoItem;
+    public final ImageButton imgButtonAumentarQuantidade;
+    public final ImageButton imgButtonDiminuirQuantidade;
+    public final ImageButton imgButtonDeletarItemServico;
+    public final TextView textValorItemCobradoDetalhe;
     public ServicoItemPrestadoViewHolder(View itemView) {
         super(itemView);
         this.textNomeDoItem = (TextView) itemView.findViewById(R.id.textNomeItemServicoDetalhe);
@@ -26,7 +31,10 @@ public class ServicoItemPrestadoViewHolder extends RecyclerView.ViewHolder {
         this.rdoDescontoPorcetagem = (RadioButton) itemView.findViewById(R.id.rdoDescontoPorcetagemDetalhe);
         this.rdoDescontoValor = (RadioButton) itemView.findViewById(R.id.rdoDescontoValorDetalhe);
         this.textValorDoDescontoDoItem = (EditText) itemView.findViewById(R.id.editValorDescontoDoItemDetalhe);
-        this.textValorCobradoDoItem = (TextView) itemView.findViewById(R.id.textValorItemCobradoDetalhe);
-
+        this.textValorCobradoDoItem = (TextView) itemView.findViewById(R.id.textValorTotalDoItemDetalhe);
+        this.imgButtonAumentarQuantidade = (ImageButton) itemView.findViewById(R.id.imgButtonAdionarItemDetalhe);
+        this.imgButtonDiminuirQuantidade = (ImageButton) itemView.findViewById(R.id.imgButtonDiminuirItemDetalhe);
+        this.imgButtonDeletarItemServico = (ImageButton) itemView.findViewById(R.id.imgButtonDeletarItemServico);
+        this.textValorItemCobradoDetalhe = (TextView) itemView.findViewById(R.id.textValorItemCobradoDetalhe);
     }
 }
