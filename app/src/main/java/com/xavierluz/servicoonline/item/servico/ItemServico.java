@@ -12,9 +12,13 @@ public class ItemServico {
     private String servicoId;
     private String nomeItemServico;
     private String descricaoItemServico;
-    private double precoItemServico;
+    private double precoItemServico =0.0;
     private boolean ativo;
     private String status;
+    private Integer quantidadeItemServico = 0;
+    private double valorCobradoDoItemServico =0.0;
+    private double valorDoDescontoDoItemServico = 0.0;
+    private boolean descontoPorcetagem = false;
     //private double valorDoServico;
 
     public ItemServico(){
@@ -25,6 +29,38 @@ public class ItemServico {
     //    return valorDoServico;
     //}
 
+
+    public boolean isDescontoPorcetagem() {
+        return descontoPorcetagem;
+    }
+
+    public void setDescontoPorcetagem(boolean descontoPorcetagem) {
+        this.descontoPorcetagem = descontoPorcetagem;
+    }
+
+    public double getValorCobradoDoItemServico() {
+        return valorCobradoDoItemServico;
+    }
+
+    public void setValorCobradoDoItemServico(double valorCobradoDoItemServico) {
+        this.valorCobradoDoItemServico = valorCobradoDoItemServico;
+    }
+
+    public double getValorDoDescontoDoItemServico() {
+        return valorDoDescontoDoItemServico;
+    }
+
+    public void setValorDoDescontoDoItemServico(double valorDoDescontoDoItemServico) {
+        this.valorDoDescontoDoItemServico = valorDoDescontoDoItemServico;
+    }
+
+    public Integer getQuantidadeItemServico() {
+        return quantidadeItemServico;
+    }
+
+    public void setQuantidadeItemServico(Integer quantidadeItemServico) {
+        this.quantidadeItemServico = quantidadeItemServico;
+    }
 
     public ItemServico(String servicoId) {
         this.servicoId = servicoId;

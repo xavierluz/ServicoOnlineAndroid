@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
         mAuth = FirebaseAuth.getInstance();
         // Configure Google Sign In
+        /*
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -68,10 +69,11 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             public void onClick(View v) {
                 signOut();
                 signIn();
+                iniciarActivityPrincipal();
 
             }
         });
-
+        */
         ImageButton imgButtonLogin =(ImageButton) findViewById(R.id.imgButtonLogin);
         imgButtonLogin.setOnClickListener(buttonLogin());
 

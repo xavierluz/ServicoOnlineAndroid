@@ -1,9 +1,12 @@
 package com.xavierluz.servicoonline;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -72,14 +75,26 @@ public class PrestadoAdapter extends RecyclerView.Adapter{
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ServicoPrestadoViewHolder servicoPrestadoViewHolder =(ServicoPrestadoViewHolder) holder;
 
-        ServicoPrestado servicoPrestado = servicosPrestados.get(position);
+        final ServicoPrestado servicoPrestado = servicosPrestados.get(position);
         servicoPrestadoViewHolder.nomeServico.setText(servicoPrestado.getServico().getNome());
         //servicoPrestadoViewHolder.nomeCliente.setText(servicoPrestado.getNomeCliente());
         servicoPrestadoViewHolder.servicoValorPrestado.setText(FechamentoAdapter.formatarMoeda(servicoPrestado.getServicoValor()));
         servicoPrestadoViewHolder.descricaoServico.setText(servicoPrestado.getServico().getNome());
         servicoPrestadoViewHolder.servicoStatus.setText(servicoPrestado.getStatus());
         servicoPrestadoViewHolder.dataServico.setText(servicoPrestado.getDataServicoCadastrado());
+        servicoPrestadoViewHolder.servicoPrestadoId.setText(servicoPrestado.getId());
         //Toast.makeText(context, "Selected prestadores: " + servicoPrestado.getNomeServico(), Toast.LENGTH_SHORT).show();
+        ImageButton imageButtonDetalhe = ((ServicoPrestadoViewHolder) holder).imageButtonPrestadorDetalhe;
+        imageButtonDetalhe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DetalheServicoPrestadoActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("servicoPrestadoId",servicoPrestado.getId());
+                intent.putExtras(bundle);
+                context.startActivity(intent);
+            }
+        });
 
     }
 

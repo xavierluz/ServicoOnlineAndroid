@@ -23,7 +23,6 @@ public class ServicoPrestado {
     private List<Servico> servicos;
     private List<ItemServico> servicoItens;
     private String dataServicoCadastrado;
-
     public ServicoPrestado(){}
     private ServicoPrestado(String servicoId) {
         this.servicoId = servicoId;
@@ -32,6 +31,7 @@ public class ServicoPrestado {
     public static ServicoPrestado getInstanceParaSalvarServicoPrestado(String servicoId){
         return new ServicoPrestado(servicoId);
     }
+
 
     public String getDataServicoCadastrado() {
         return dataServicoCadastrado;

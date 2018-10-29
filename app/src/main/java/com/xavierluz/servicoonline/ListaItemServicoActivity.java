@@ -179,7 +179,8 @@ public class ListaItemServicoActivity extends AppCompatActivity {
         Double itemServicoPreco = limparCaracteresInvalidos(itemServicoViewHolder.textPrecoItemServico.getText().toString());
 
         ItemServico itemServico = new ItemServico(this.servicoId);
-        itemServico.setAtivo(true);
+        itemServico.setQuantidadeItemServico(1);
+        itemServico.setValorCobradoDoItemServico(itemServicoPreco);
         itemServico.setNomeItemServico(itemServicoNome);
         itemServico.setId(itemServicoId);
         itemServico.setPrecoItemServico(itemServicoPreco);

@@ -20,5 +20,6 @@
     <color name="colorButtonFundoServico">#f9aa33</color>
     <color name="colorBackgroundFundoFundoBotao">#fcaf3d</color>
     <color name="colorBackgroundBotaoAcaoActivityPrimary">#b7cbd7</color>
+    <color name="colorBackgroundDetalhesValores">#e7e5e5</color>
 </resources>
 

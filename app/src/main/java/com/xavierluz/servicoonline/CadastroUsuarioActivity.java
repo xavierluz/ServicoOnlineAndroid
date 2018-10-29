@@ -61,7 +61,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(validarCamposUsuario()) {
                     criarUsuario(emailUsuario.getText().toString(), senhaUsuario.getText().toString());
-                    criarDisplayName(nomeUsuario.getText().toString());
+
                     loginUsuario(emailUsuario.getText().toString(), senhaUsuario.getText().toString());
 
                 }
@@ -86,7 +86,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
-
+                            criarDisplayName(nomeUsuario.getText().toString());
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());

@@ -31,6 +31,7 @@ public class ServicoPrestadoServices {
     private static String TAG ="ServicoPrestadoServices";
     private List<ServicoPrestado> servicoPrestados;
     private PrestadoAdapter adapter;
+    private ServicoPrestadoDetalheAdpater adapterDetalhe;
     private Context context;
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView recyclerView;
@@ -125,11 +126,27 @@ public class ServicoPrestadoServices {
         this.recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
+    public void setRecyclerViewDetalhe(){
+        layoutManager = new LinearLayoutManager(context);
+        this.recyclerView.setLayoutManager(layoutManager);
+        this.recyclerView.setItemAnimator(new DefaultItemAnimator());
+        this.recyclerView.addItemDecoration(new SimpleDividerItemDecoration(
+                context
+        ));
+
+        RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(context,
+                LinearLayoutManager.VERTICAL, false);
+        this.recyclerView.setLayoutManager(linearLayoutManager);
+        this.recyclerView.setAdapter(adapterDetalhe);
+        //adapterDetalhe.notifyDataSetChanged();
+    }
     public PrestadoAdapter getAdapter() {
         return this.adapter;
     }
-
-    public void setServicosPrestado(){
+    public ServicoPrestadoDetalheAdpater getAdapterDetalhe() {
+        return this.adapterDetalhe;
+    }
+    public void setServicosPrestado( ){
 
         Query query = this.refServicos.orderByChild("nome");
 
@@ -149,13 +166,98 @@ public class ServicoPrestadoServices {
                         */
                         servico.setItemServicos(itemServicos);
                         servicoPrestado.setServico(servico);
-                        servicoPrestado.setServicoId(data.getKey());
+                        servicoPrestado.setId(data.getKey());
                         servicoPrestados.add(servicoPrestado);
                         //Log.i(TAG, servicoPrestado.getDescricaoServico());
                     }
 
                     adapter = new PrestadoAdapter(servicoPrestados,context);
                     setRecyclerView();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        query.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                if(dataSnapshot.exists()) {
+                    ServicoPrestado servicoPrestado = dataSnapshot.getValue(ServicoPrestado.class);
+                    servicoPrestado.setServicoId(dataSnapshot.getKey());
+                    for(ServicoPrestado _servicoPrestado : servicoPrestados){
+                        if(servicoPrestado.getId().equals(_servicoPrestado.getId())){
+                            servicoPrestados.remove(_servicoPrestado);
+                            break;
+                        }
+                    }
+                    servicoPrestados.add(servicoPrestado);
+                    setRecyclerView();
+                }
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+            // TODO: implement the ChildEventListener methods as documented above
+            // ...
+        });
+        // My top posts by number of stars
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+                // ...
+            }
+        });
+    }
+    public void setServicosPrestadoDetalhe(String servicosPrestadoId){
+        DatabaseReference refServicosPrestados = database.getReference("servicosPrestado")
+                .child(servicosPrestadoId).child("servico").child("itemServicos");
+       Log.i("SevicoPrestadoId",servicosPrestadoId);
+        Query query = refServicosPrestados.orderByChild("nome");
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //Log.i("SevicoPrestadoSnapshot",dataSnapshot.getKey());
+                if(dataSnapshot.exists()){
+
+                        for (DataSnapshot dataItem : dataSnapshot.getChildren()) {
+                            Log.i("SevicoPrestadoSnapshot",dataItem.getValue().toString());
+                            ItemServico itemServico = dataItem.getValue(ItemServico.class);
+                            Log.i("getNomeItemServico",itemServico.getNomeItemServico());
+                            itemServicos.add(itemServico);
+                        }
+                    adapterDetalhe = new ServicoPrestadoDetalheAdpater(itemServicos,context);
+                    setRecyclerViewDetalhe();
                 }
             }
 
