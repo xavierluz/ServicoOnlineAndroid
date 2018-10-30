@@ -30,11 +30,11 @@ public class ServicoItemPrestadoViewHolder extends RecyclerView.ViewHolder {
         this.textPrecoDoItem = (TextView) itemView.findViewById(R.id.textPrecoItemServicoPrestadorDetalhe);
         this.rdoDescontoPorcetagem = (RadioButton) itemView.findViewById(R.id.rdoDescontoPorcetagemDetalhe);
         this.rdoDescontoValor = (RadioButton) itemView.findViewById(R.id.rdoDescontoValorDetalhe);
-        this.textValorDoDescontoDoItem = (EditText) itemView.findViewById(R.id.editValorDescontoDoItemDetalhe);
-        this.textValorCobradoDoItem = (TextView) itemView.findViewById(R.id.textValorTotalDoItemDetalhe);
+        this.textValorDoDescontoDoItem = (EditText) itemView.findViewById(R.id.textValorDoDescontoDoItem);
+        this.textValorCobradoDoItem = (TextView) itemView.findViewById(R.id.textValorCobradoDoServico);
         this.imgButtonAumentarQuantidade = (ImageButton) itemView.findViewById(R.id.imgButtonAdionarItemDetalhe);
         this.imgButtonDiminuirQuantidade = (ImageButton) itemView.findViewById(R.id.imgButtonDiminuirItemDetalhe);
         this.imgButtonDeletarItemServico = (ImageButton) itemView.findViewById(R.id.imgButtonDeletarItemServico);
-        this.textValorItemCobradoDetalhe = (TextView) itemView.findViewById(R.id.textValorItemCobradoDetalhe);
+        this.textValorItemCobradoDetalhe = (TextView) itemView.findViewById(R.id.textValorCobradoDoServico);
     }
 }

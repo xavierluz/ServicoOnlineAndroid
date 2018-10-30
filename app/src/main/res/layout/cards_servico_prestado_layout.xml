@@ -145,7 +145,7 @@
                     android:layout_marginBottom="8dp"
                     android:background="@color/colorButtonFundoServico"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/imgButtonEditarServicoPrestado"
+                    app:layout_constraintEnd_toStartOf="@+id/imgButtonDeletarItemServico"
                     app:layout_constraintHorizontal_bias="0.197"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -153,7 +153,7 @@
                     app:srcCompat="@drawable/baseline_description_white_48" />
 
                 <ImageButton
-                    android:id="@+id/imgButtonEditarServicoPrestado"
+                    android:id="@+id/imgButtonDeletarItemServico"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="8dp"
