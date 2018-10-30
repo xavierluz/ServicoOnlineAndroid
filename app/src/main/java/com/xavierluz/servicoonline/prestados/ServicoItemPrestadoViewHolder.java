@@ -16,12 +16,14 @@ public class ServicoItemPrestadoViewHolder extends RecyclerView.ViewHolder {
     public final TextView textPrecoDoItem;
     public final RadioButton rdoDescontoPorcetagem;
     public final RadioButton rdoDescontoValor;
-    public final EditText textValorDoDescontoDoItem;
-    public final TextView textValorCobradoDoItem;
+    public final EditText textValorDoDesconto;
+    public final TextView textValorDoItem;
     public final ImageButton imgButtonAumentarQuantidade;
     public final ImageButton imgButtonDiminuirQuantidade;
     public final ImageButton imgButtonDeletarItemServico;
-    public final TextView textValorItemCobradoDetalhe;
+    public final TextView textValorTotalDoItem;
+    public final TextView textValorTotalCobrado;
+
     public ServicoItemPrestadoViewHolder(View itemView) {
         super(itemView);
         this.textNomeDoItem = (TextView) itemView.findViewById(R.id.textNomeItemServicoDetalhe);
@@ -30,11 +32,12 @@ public class ServicoItemPrestadoViewHolder extends RecyclerView.ViewHolder {
         this.textPrecoDoItem = (TextView) itemView.findViewById(R.id.textPrecoItemServicoPrestadorDetalhe);
         this.rdoDescontoPorcetagem = (RadioButton) itemView.findViewById(R.id.rdoDescontoPorcetagemDetalhe);
         this.rdoDescontoValor = (RadioButton) itemView.findViewById(R.id.rdoDescontoValorDetalhe);
-        this.textValorDoDescontoDoItem = (EditText) itemView.findViewById(R.id.textValorDoDescontoDoItem);
-        this.textValorCobradoDoItem = (TextView) itemView.findViewById(R.id.textValorCobradoDoServico);
+        this.textValorDoDesconto = (EditText) itemView.findViewById(R.id.textValorDoDescontoDoItem);
+        this.textValorDoItem = (TextView) itemView.findViewById(R.id.textValorCobradoDoServico);
         this.imgButtonAumentarQuantidade = (ImageButton) itemView.findViewById(R.id.imgButtonAdionarItemDetalhe);
         this.imgButtonDiminuirQuantidade = (ImageButton) itemView.findViewById(R.id.imgButtonDiminuirItemDetalhe);
         this.imgButtonDeletarItemServico = (ImageButton) itemView.findViewById(R.id.imgButtonDeletarItemServico);
-        this.textValorItemCobradoDetalhe = (TextView) itemView.findViewById(R.id.textValorCobradoDoServico);
+        this.textValorTotalDoItem = (TextView) itemView.findViewById(R.id.textValorCobradoDoServico);
+        this.textValorTotalCobrado = (TextView) itemView.findViewById(R.id.textValorItemCobradoDetalhe);
     }
 }

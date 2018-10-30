@@ -16,11 +16,10 @@ public class ItemServico {
     private boolean ativo;
     private String status;
     private Integer quantidadeItemServico = 0;
-    private double valorCobradoDoItemServico =0.0;
-    private double valorDoDescontoDoItemServico = 0.0;
+    private double valorDoItemServico =0.0;
+    private double valorDoDesconto = 0.0;
     private boolean descontoPorcetagem = false;
-    //private double valorDoServico;
-
+    private double valorTotalDoItem;
     public ItemServico(){
 
     }
@@ -38,20 +37,28 @@ public class ItemServico {
         this.descontoPorcetagem = descontoPorcetagem;
     }
 
-    public double getValorCobradoDoItemServico() {
-        return valorCobradoDoItemServico;
+    public double getValorDoItemServico() {
+        return valorDoItemServico;
     }
 
-    public void setValorCobradoDoItemServico(double valorCobradoDoItemServico) {
-        this.valorCobradoDoItemServico = valorCobradoDoItemServico;
+    public void setValorDoItemServico(double valorDoItemServico) {
+        this.valorDoItemServico = valorDoItemServico;
     }
 
-    public double getValorDoDescontoDoItemServico() {
-        return valorDoDescontoDoItemServico;
+    public double getValorDoDesconto() {
+        return valorDoDesconto;
     }
 
-    public void setValorDoDescontoDoItemServico(double valorDoDescontoDoItemServico) {
-        this.valorDoDescontoDoItemServico = valorDoDescontoDoItemServico;
+    public void setValorDoDesconto(double valorDoDesconto) {
+        this.valorDoDesconto = valorDoDesconto;
+    }
+
+    public double getValorTotalDoItem() {
+        return valorTotalDoItem;
+    }
+
+    public void setValorTotalDoItem(double valorTotalDoItem) {
+        this.valorTotalDoItem = valorTotalDoItem;
     }
 
     public Integer getQuantidadeItemServico() {

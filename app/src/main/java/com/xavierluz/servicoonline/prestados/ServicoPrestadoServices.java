@@ -1,10 +1,13 @@
 package com.xavierluz.servicoonline.prestados;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.Task;
@@ -15,7 +18,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.xavierluz.servicoonline.DetalheServicoPrestadoActivity;
 import com.xavierluz.servicoonline.PrestadoAdapter;
+import com.xavierluz.servicoonline.R;
 import com.xavierluz.servicoonline.SimpleDividerItemDecoration;
 import com.xavierluz.servicoonline.item.servico.ItemServico;
 import com.xavierluz.servicoonline.item.servico.Servico;
@@ -238,10 +243,35 @@ public class ServicoPrestadoServices {
             }
         });
     }
+
+    public void setServicoPrestado(final View view,String servicosPrestadoId){
+        DatabaseReference refServicosPrestados = database.getReference("servicosPrestado")
+                .child(servicosPrestadoId).child("servico");
+        Log.i("SevicoPrestadoId",servicosPrestadoId);
+        Query query = refServicosPrestados.orderByChild("dataServicoCadastrado");
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    for (DataSnapshot data : dataSnapshot.getChildren()) {
+                        Servico servico = data.getValue(Servico.class);
+                        TextView textDescricaoServicoPrestadoDetalhe =(TextView) view.findViewById(R.id.textDescricaoServicoPrestadoDetalhe);
+                        textDescricaoServicoPrestadoDetalhe.setText(servico.getNome());
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     public void setServicosPrestadoDetalhe(String servicosPrestadoId){
         DatabaseReference refServicosPrestados = database.getReference("servicosPrestado")
                 .child(servicosPrestadoId).child("servico").child("itemServicos");
-       Log.i("SevicoPrestadoId",servicosPrestadoId);
+        Log.i("SevicoPrestadoId",servicosPrestadoId);
         Query query = refServicosPrestados.orderByChild("nome");
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -249,15 +279,18 @@ public class ServicoPrestadoServices {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //Log.i("SevicoPrestadoSnapshot",dataSnapshot.getKey());
                 if(dataSnapshot.exists()){
-
-                        for (DataSnapshot dataItem : dataSnapshot.getChildren()) {
-                            Log.i("SevicoPrestadoSnapshot",dataItem.getValue().toString());
+                    for (DataSnapshot data : dataSnapshot.getChildren()) {
+                        Servico servico = data.getValue(Servico.class);
+                        for (DataSnapshot dataItem : data.getChildren()) {
+                            Log.i("SevicoPrestadoSnapshot", dataItem.getValue().toString());
                             ItemServico itemServico = dataItem.getValue(ItemServico.class);
-                            Log.i("getNomeItemServico",itemServico.getNomeItemServico());
+                            Log.i("getNomeItemServico", itemServico.getNomeItemServico());
                             itemServicos.add(itemServico);
                         }
-                    adapterDetalhe = new ServicoPrestadoDetalheAdpater(itemServicos,context);
-                    setRecyclerViewDetalhe();
+                        servico.setItemServicos(itemServicos);
+                        adapterDetalhe = new ServicoPrestadoDetalheAdpater(itemServicos, context);
+                        setRecyclerViewDetalhe();
+                    }
                 }
             }
 
