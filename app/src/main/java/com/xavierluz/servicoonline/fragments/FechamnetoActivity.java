@@ -14,8 +14,10 @@ import android.view.ViewGroup;
 import com.xavierluz.servicoonline.FechamentoAdapter;
 import com.xavierluz.servicoonline.R;
 import com.xavierluz.servicoonline.SimpleDividerItemDecoration;
+import com.xavierluz.servicoonline.fechamento.Fechamento;
 import com.xavierluz.servicoonline.fechamento.ServicoFechamento;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -52,9 +54,9 @@ public class FechamnetoActivity extends Fragment {
         GridLayoutManager mGridLayoutManager = new GridLayoutManager(getActivity().getApplicationContext(), 2);
         this.recycleViewFechamento.setLayoutManager(mGridLayoutManager);
 
-        List<ServicoFechamento> servicoFechamentos = ServicoFechamento.getServicosFechamentos();
-        Log.i("Count:", Integer.toString(servicoFechamentos.size()));
-        this.recycleViewFechamento.setAdapter(new FechamentoAdapter(servicoFechamentos,getActivity().getApplicationContext()));
+        List<Fechamento> fechamentos = new ArrayList<>();
+        Log.i("Count:", Integer.toString(fechamentos.size()));
+        this.recycleViewFechamento.setAdapter(new FechamentoAdapter(fechamentos,getActivity().getApplicationContext()));
         return view;
     }
 }

@@ -7,7 +7,6 @@ import android.widget.TextView;
 import com.xavierluz.servicoonline.R;
 
 public class ServicoViewHolder extends RecyclerView.ViewHolder{
-    public final TextView textDataDoCadastroPrestadorDetalhe;
     public final TextView textDescricaoServicoPrestadoDetalhe;
     public final TextView textValorDoServicoPrestadoDetalhe;
     public final TextView textValorSerCobradoServicoPrestadoDetalhe;
@@ -15,7 +14,7 @@ public class ServicoViewHolder extends RecyclerView.ViewHolder{
     public ServicoViewHolder(View itemView) {
         super(itemView);
 
-        this.textDataDoCadastroPrestadorDetalhe = (TextView) itemView.findViewById(R.id.textDataDoCadastroPrestadorDetalhe);
+
         this.textDescricaoServicoPrestadoDetalhe = (TextView) itemView.findViewById(R.id.textDescricaoServicoPrestadoDetalhe);
         this.textValorDoServicoPrestadoDetalhe = (TextView) itemView.findViewById(R.id.textValorDoServicoPrestadoDetalhe);
         this.textValorSerCobradoServicoPrestadoDetalhe = (TextView) itemView.findViewById(R.id.textValorSerCobradoServicoPrestadoDetalhe);

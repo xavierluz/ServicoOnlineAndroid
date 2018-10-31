@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.xavierluz.servicoonline.fechamento.Fechamento;
 import com.xavierluz.servicoonline.fechamento.ServicoFechamento;
 import com.xavierluz.servicoonline.fechamento.ServicoFechamentoViewHolder;
 
@@ -21,12 +22,12 @@ import java.util.List;
 import java.util.Locale;
 
 public class FechamentoAdapter extends RecyclerView.Adapter {
-    private List<ServicoFechamento> servicoFechamentos;
+    private List<Fechamento> fechamentos;
     private Context context;
 
-    public FechamentoAdapter(List<ServicoFechamento> servicoFechamentos, Context context){
+    public FechamentoAdapter(List<Fechamento> fechamentos, Context context){
         this.context = context;
-        this.servicoFechamentos = servicoFechamentos;
+        this.fechamentos = fechamentos;
     }
     /**
      * Called when RecyclerView needs a new {@link ViewHolder} of the given type to represent
@@ -81,14 +82,13 @@ public class FechamentoAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ServicoFechamentoViewHolder servicoFechamentoViewHolder =(ServicoFechamentoViewHolder) holder;
 
-        ServicoFechamento servicoFechamento = servicoFechamentos.get(position);
-        Log.i("Fechamento",Integer.toString(servicoFechamentos.size()));
-        servicoFechamentoViewHolder.textFechamentoId.setText(servicoFechamento.getFechamentoId().toString());
-        servicoFechamentoViewHolder.textDataFechamento.setText(servicoFechamento.getDataFechamento().toString());
-        servicoFechamentoViewHolder.textDataPorExtenso.setText(formatarDataMesAno(servicoFechamento.getDataFechamento()));
-        servicoFechamentoViewHolder.textDescricaoFechamento.setText(servicoFechamento.getDescricaoFechamento());
-        servicoFechamentoViewHolder.textFechamentoServicoId.setText(servicoFechamento.getfechamentoServicoId().toString());
-        servicoFechamentoViewHolder.textValorFechamento.setText("R$ " + formatarDecimal(servicoFechamento.getValorFechamento()));
+        Fechamento fechamento = fechamentos.get(position);
+        Log.i("Fechamento",Integer.toString(fechamentos.size()));
+        servicoFechamentoViewHolder.textFechamentoId.setText(fechamento.getFechamentoId().toString());
+        servicoFechamentoViewHolder.textDataFechamento.setText(fechamento.getDataFechamento().toString());
+        servicoFechamentoViewHolder.textDataPorExtenso.setText(formatarDataMesAno(fechamento.getDataFechamento()));
+        servicoFechamentoViewHolder.textDescricaoFechamento.setText(fechamento.getDescricaoFechamento());
+        servicoFechamentoViewHolder.textValorFechamento.setText("R$ " + formatarDecimal(fechamento.getValorFechamento()));
     }
 
     /**
@@ -98,7 +98,7 @@ public class FechamentoAdapter extends RecyclerView.Adapter {
      */
     @Override
     public int getItemCount() {
-        return this.servicoFechamentos.size();
+        return this.fechamentos.size();
     }
     // ESSE MÉTODO AQUI CASO QUERIA PEGAR SEMPRE
     // A DATA ATUAL JA FORMATADA

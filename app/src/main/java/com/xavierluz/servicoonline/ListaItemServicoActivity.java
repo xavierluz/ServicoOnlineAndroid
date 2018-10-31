@@ -180,7 +180,7 @@ public class ListaItemServicoActivity extends AppCompatActivity {
 
         ItemServico itemServico = new ItemServico(this.servicoId);
         itemServico.setQuantidadeItemServico(1);
-        itemServico.setValorCobradoDoItemServico(itemServicoPreco);
+        itemServico.setValorTotalDoItem(itemServicoPreco);
         itemServico.setNomeItemServico(itemServicoNome);
         itemServico.setId(itemServicoId);
         itemServico.setPrecoItemServico(itemServicoPreco);

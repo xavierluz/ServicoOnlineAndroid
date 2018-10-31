@@ -1,5 +1,6 @@
 package com.xavierluz.servicoonline.prestados;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
@@ -48,12 +49,18 @@ public class ServicoPrestadoDetalheAdpater  extends RecyclerView.Adapter{
         servicoItemPrestadoViewHolder.textDescricaoDoItem.setText(itemServico.getDescricaoItemServico());
         servicoItemPrestadoViewHolder.textPrecoDoItem.setText(FechamentoAdapter.formatarMoeda(itemServico.getPrecoItemServico()));
         servicoItemPrestadoViewHolder.textQuantidadeDoItem.setText(itemServico.getQuantidadeItemServico().toString());
-        servicoItemPrestadoViewHolder.textValorTotalCobrado.setText(FechamentoAdapter.formatarMoeda(itemServico.getValorTotalDoItem()));
-        servicoItemPrestadoViewHolder.textValorDoDesconto.setText(FechamentoAdapter.formatarMoeda(itemServico.getValorDoDesconto()));
-        servicoItemPrestadoViewHolder.textValorTotalDoItem.setText(FechamentoAdapter.formatarMoeda(itemServico.getValorDoItemServico()));
-      //  servicoItemPrestadoViewHolder.rdoDescontoPorcetagem.setChecked(itemServico.isDescontoPorcetagem());
-      //  servicoItemPrestadoViewHolder.rdoDescontoValor.setChecked(!itemServico.isDescontoPorcetagem());
-      //  Toast.makeText(this.context, "Selected Item: " + itemServico.getNomeItemServico(), Toast.LENGTH_SHORT).show();
+
+        if(itemServico.getValorDoDesconto() < 1){
+            servicoItemPrestadoViewHolder.textValorTotalCobrado.setText(FechamentoAdapter.formatarMoeda(calcularValorDoItem(itemServico.getQuantidadeItemServico(), itemServico.getPrecoItemServico())));
+        }else{
+            servicoItemPrestadoViewHolder.textValorTotalCobrado.setText(FechamentoAdapter.formatarMoeda(itemServico.getValorTotalDoItem()));
+        }
+        servicoItemPrestadoViewHolder.textValorDoDesconto.setText(Double.toString(itemServico.getValorDoDesconto()));
+        servicoItemPrestadoViewHolder.textValorTotalDoItem.setText(FechamentoAdapter.formatarMoeda(calcularValorDoItem(itemServico.getQuantidadeItemServico(), itemServico.getPrecoItemServico())));
+        servicoItemPrestadoViewHolder.rdoDescontoPorcetagem.setChecked(itemServico.isDescontoPorcetagem());
+        servicoItemPrestadoViewHolder.rdoDescontoValor.setChecked(!itemServico.isDescontoPorcetagem());
+
+        //  Toast.makeText(this.context, "Selected Item: " + itemServico.getNomeItemServico(), Toast.LENGTH_SHORT).show();
         //servicoItemPrestadoViewHolder.textNomeDoItem.setText(servicoPrestado.getServico().getItemServicos().forEach(-> item););
         //servicoItemPrestadoViewHolder.nomeServico.setText(servicoPrestado.getServico().getNome());
         //servicoPrestadoViewHolder.nomeCliente.setText(servicoPrestado.getNomeCliente());
@@ -97,7 +104,7 @@ public class ServicoPrestadoDetalheAdpater  extends RecyclerView.Adapter{
             }
         });
         servicoItemPrestadoViewHolder.textValorDoDesconto.addTextChangedListener(new TextWatcher() {
-            Double valorDesconto =  FechamentoAdapter.formatoDecimalSemTipoMoeda(servicoItemPrestadoViewHolder.textValorDoDesconto.getText().toString());
+            //Double valorDesconto =  FechamentoAdapter.formatoDecimalSemTipoMoeda(servicoItemPrestadoViewHolder.textValorDoDesconto.getText().toString());
             Double valorTotalItemServico =  FechamentoAdapter.formatoDecimalSemTipoMoeda(servicoItemPrestadoViewHolder.textValorDoItem.getText().toString());
             String valorCobrado ="";
             @Override
@@ -111,16 +118,27 @@ public class ServicoPrestadoDetalheAdpater  extends RecyclerView.Adapter{
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
-                if(servicoItemPrestadoViewHolder.rdoDescontoPorcetagem.isChecked()){
-                    valorCobrado = FechamentoAdapter.formatarMoeda(calcularDescontoPorPorcetagem(valorDesconto,valorTotalItemServico));
-                }else{
-                    valorCobrado = FechamentoAdapter.formatarMoeda(calcularDescontoPorValor(valorDesconto,valorTotalItemServico));
-                    Toast.makeText(context, "valorDesconto" + valorCobrado.toString() , Toast.LENGTH_SHORT).show();
-                    Toast.makeText(context, "valorCobrado" + valorCobrado.toString() , Toast.LENGTH_SHORT).show();
-                }
+            public void afterTextChanged(Editable value) {
+               if(value.length() > 0) {
+                   //Toast.makeText(context, "subSequence" +value.subSequence(0,1).toString() , Toast.LENGTH_SHORT).show();
+                   Double valorDesconto = Double.parseDouble(value.toString().replace(",","."));
+                   if (servicoItemPrestadoViewHolder.rdoDescontoPorcetagem.isChecked()) {
+                       valorCobrado = FechamentoAdapter.formatarMoeda(calcularDescontoPorPorcetagem(valorDesconto, valorTotalItemServico));
+                   } else {
+                       valorCobrado = FechamentoAdapter.formatarMoeda(calcularDescontoPorValor(valorDesconto, valorTotalItemServico));
+                       //Toast.makeText(context, "valorDesconto" + valorDesconto.toString() , Toast.LENGTH_SHORT).show();
+                       //Toast.makeText(context, "valorCobrado" + valorCobrado.toString() , Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(context, "valorDesconto" + valorDesconto.toString() , Toast.LENGTH_SHORT).show();
+                       //Toast.makeText(context, "valorTotalItemServico" + valorTotalItemServico.toString() , Toast.LENGTH_SHORT).show();
+                   }
+                   View viewListaItensServico = ((Activity)context).getWindow().getDecorView().findViewById(android.R.id.content);
+                   View view = viewListaItensServico.findViewById(R.id.activity_item_servico_prestado_detalhe);
 
-                servicoItemPrestadoViewHolder.textValorTotalCobrado.setText(valorCobrado);
+                   servicoItemPrestadoViewHolder.textValorTotalCobrado.setText(valorCobrado);
+
+                   TextView textValorDoServicoPrestadoDetalhe = (TextView) view.findViewById(R.id.textValorDoServicoPrestadoDetalhe);
+                   textValorDoServicoPrestadoDetalhe.setText(valorCobrado);
+               }
             }
         });
         servicoItemPrestadoViewHolder.imgButtonDeletarItemServico.setOnClickListener(new View.OnClickListener() {
@@ -140,6 +158,7 @@ public class ServicoPrestadoDetalheAdpater  extends RecyclerView.Adapter{
         });
 
     }
+
     private Integer seAumentartQuantidade(String quantidade){
         Integer _quantidade;
         if(quantidade == ""){
@@ -211,14 +230,14 @@ public class ServicoPrestadoDetalheAdpater  extends RecyclerView.Adapter{
         return quantidade * valor;
     }
     private Double calcularDescontoPorValor(Double valorDesconto, Double valorTotalDoItem) {
-        if (valorDesconto > valorTotalDoItem) {
+        if (valorTotalDoItem > valorDesconto) {
             return valorTotalDoItem - valorDesconto;
         }
         return valorTotalDoItem;
     }
     private Double calcularDescontoPorPorcetagem(Double valorPorcetagem, Double valorTotalDoItem) {
         Double calcularPorcetagem =calcularPorcetagem(valorPorcetagem,valorTotalDoItem);
-        if(calcularPorcetagem > valorTotalDoItem){
+        if(valorTotalDoItem > valorPorcetagem){
             return valorTotalDoItem - calcularPorcetagem;
         }
         return valorTotalDoItem;

@@ -253,11 +253,11 @@ public class ServicoPrestadoServices {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
-                    for (DataSnapshot data : dataSnapshot.getChildren()) {
-                        Servico servico = data.getValue(Servico.class);
+
+                        Servico servico = dataSnapshot.getValue(Servico.class);
                         TextView textDescricaoServicoPrestadoDetalhe =(TextView) view.findViewById(R.id.textDescricaoServicoPrestadoDetalhe);
                         textDescricaoServicoPrestadoDetalhe.setText(servico.getNome());
-                    }
+
                 }
             }
 
@@ -279,18 +279,16 @@ public class ServicoPrestadoServices {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //Log.i("SevicoPrestadoSnapshot",dataSnapshot.getKey());
                 if(dataSnapshot.exists()){
-                    for (DataSnapshot data : dataSnapshot.getChildren()) {
-                        Servico servico = data.getValue(Servico.class);
-                        for (DataSnapshot dataItem : data.getChildren()) {
+
+                        for (DataSnapshot dataItem : dataSnapshot.getChildren()) {
                             Log.i("SevicoPrestadoSnapshot", dataItem.getValue().toString());
                             ItemServico itemServico = dataItem.getValue(ItemServico.class);
                             Log.i("getNomeItemServico", itemServico.getNomeItemServico());
                             itemServicos.add(itemServico);
                         }
-                        servico.setItemServicos(itemServicos);
                         adapterDetalhe = new ServicoPrestadoDetalheAdpater(itemServicos, context);
                         setRecyclerViewDetalhe();
-                    }
+
                 }
             }
 
