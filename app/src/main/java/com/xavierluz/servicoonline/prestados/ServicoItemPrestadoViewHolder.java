@@ -23,7 +23,8 @@ public class ServicoItemPrestadoViewHolder extends RecyclerView.ViewHolder {
     public final ImageButton imgButtonDeletarItemServico;
     public final TextView textValorTotalDoItem;
     public final TextView textValorTotalCobrado;
-
+    public final TextView textDesconto;
+    public final ImageButton imgButtonDetalhesServicoPrestado;
     public ServicoItemPrestadoViewHolder(View itemView) {
         super(itemView);
         this.textNomeDoItem = (TextView) itemView.findViewById(R.id.textNomeItemServicoDetalhe);
@@ -39,5 +40,7 @@ public class ServicoItemPrestadoViewHolder extends RecyclerView.ViewHolder {
         this.imgButtonDeletarItemServico = (ImageButton) itemView.findViewById(R.id.imgButtonDeletarItemServico);
         this.textValorTotalDoItem = (TextView) itemView.findViewById(R.id.textValorCobradoDoServico);
         this.textValorTotalCobrado = (TextView) itemView.findViewById(R.id.textValorItemCobradoDetalhe);
+        this.textDesconto = (TextView) itemView.findViewById(R.id.textValorDoDescontoDetalhe);
+        this.imgButtonDetalhesServicoPrestado = (ImageButton) itemView.findViewById(R.id.imgButtonDetalhesServicoPrestado);
     }
 }

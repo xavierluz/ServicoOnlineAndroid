@@ -20,6 +20,7 @@ public class ItemServico {
     private double valorDoDesconto = 0.0;
     private boolean descontoPorcetagem = false;
     private double valorTotalDoItem;
+    private double Desconto =0.0;
     public ItemServico(){
 
     }
@@ -28,6 +29,14 @@ public class ItemServico {
     //    return valorDoServico;
     //}
 
+
+    public double getDesconto() {
+        return Desconto;
+    }
+
+    public void setDesconto(double desconto) {
+        Desconto = desconto;
+    }
 
     public boolean isDescontoPorcetagem() {
         return descontoPorcetagem;

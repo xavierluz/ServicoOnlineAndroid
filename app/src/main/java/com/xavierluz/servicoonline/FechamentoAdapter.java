@@ -140,10 +140,15 @@ public class FechamentoAdapter extends RecyclerView.Adapter {
     }
 
     public static double formatoDecimalSemTipoMoeda(String valor) {
-        if (valor.length() > 0) {
-            return valorSemMascara(valor);
+
+        if (valor.trim().length() == 0) {
+            valor = "0.0";
         }
-        return 0.0;
+        String str = valor.replace("R$", "").replace(".","").replace(",", ".");
+        Log.i("valorDouble:", str);
+        return Double.parseDouble(str);
+
+
     }
     private static Double valorSemMascara(String valor) {
         BigDecimal parsed = null;

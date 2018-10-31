@@ -11,7 +11,7 @@
     android:layout_marginEnd="0dp"
     android:layout_marginRight="0dp"
     android:layout_marginBottom="0dp"
-    android:background="@color/colorBackgroundPrimary"
+    android:background="@color/colorBackgroundFundo"
     android:padding="0dp"
     android:paddingStart="0dp"
     android:paddingLeft="0dp"
@@ -46,7 +46,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="255dp"
+            android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:orientation="vertical">
 
@@ -86,6 +86,135 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="left"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:text="Valor do Item"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textPrecoItemServicoPrestadorDetalhe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:text="Valor do item"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/colorTituloPrimary" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:text="Valor do serviço"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textValorCobradoDoServico"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:text="Valor do item"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/colorTituloPrimary" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:text="Valor desconto"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textValorDoDescontoDetalhe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:text="Valor desconto"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/colorTituloPrimary" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:text="Valor cobrado"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textValorItemCobradoDetalhe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:text="Valor cobrado"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/colorTituloPrimary" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@color/colorBackgroundPrimary"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -94,10 +223,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="2dp"
+                    android:layout_marginTop="2dp"
                     android:layout_marginRight="32dp"
                     android:layout_marginBottom="2dp"
                     android:background="@color/colorAccent"
                     app:srcCompat="@drawable/baseline_add_circle_white_24" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Quantidade:" />
 
                 <TextView
                     android:id="@+id/textQuantidadeItemServico"
@@ -116,48 +251,18 @@
                     android:textColor="@color/colorSecondary"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/textPrecoItemServicoPrestadorDetalhe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginEnd="0dp"
-                    android:layout_marginRight="0dp"
-                    android:layout_marginBottom="2dp"
-                    android:paddingLeft="10dp"
-                    android:text="Valor do item"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorPrimary"
-                    android:textStyle="bold" />
-
                 <ImageButton
                     android:id="@+id/imgButtonDiminuirItemDetalhe"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="32dp"
+                    android:layout_marginTop="2dp"
                     android:layout_marginRight="2dp"
                     android:layout_marginBottom="2dp"
                     android:background="@color/colorAccent"
                     app:srcCompat="@drawable/baseline_remove_circle_white_24" />
             </LinearLayout>
 
-
-            <TextView
-                android:id="@+id/textValorCobradoDoServico"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                android:padding="2dp"
-                android:text="Valor do item serviço"
-                android:textAlignment="center"
-                android:textColor="@color/colorSecondary"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
@@ -209,6 +314,10 @@
                     android:layout_marginEnd="50dp"
                     android:layout_marginBottom="8dp"
                     android:background="@color/colorButtonFundoServico"
+                    android:textAlignment="center"
+                    android:textDirection="ltr"
+                    android:tooltipText="Corfimar o desconto"
+                    
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/imgButtonDeletarItemServico"
                     app:layout_constraintStart_toStartOf="parent"
@@ -249,23 +358,6 @@
                     app:layout_constraintStart_toEndOf="@+id/rdoDescontoValorDetalhe"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/textValorItemCobradoDetalhe"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="Valor cobrado"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorTextoPrimary"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textValorDoDescontoDoItem"
-                    app:layout_constraintVertical_bias="0.0" />
             </android.support.constraint.ConstraintLayout>
 
         </LinearLayout>

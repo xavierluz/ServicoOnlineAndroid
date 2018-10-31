@@ -18,17 +18,20 @@
         app:titleTextColor="@color/colorTextoPrimary" />
 
     <android.support.v7.widget.CardView
+        android:id="@+id/card_view_servico_prestado"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="70dp"
+        android:layout_height="394dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="4dp"
         android:background="@color/colorBackgroundPrimary"
         android:theme="@style/AppTheme"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/imgButtonSalvarServicoPrestado"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toBottomOf="@+id/toolbarServicoPrestadoDetalhe">
 
 
         <android.support.constraint.ConstraintLayout
@@ -40,10 +43,8 @@
                 android:id="@+id/linearLayout4"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="2dp"
-                android:layout_marginEnd="8dp"
-                android:background="@color/colorBackgroundPrimary"
+                android:background="@color/colorBackgroundFundo"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -55,15 +56,27 @@
                     android:id="@+id/textDescricaoServicoPrestadoDetalhe"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="2dp"
+                    android:layout_marginLeft="4dp"
                     android:layout_marginRight="2dp"
                     android:text="Descrição" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/colorBackgroundFundo"
                     android:gravity="center_horizontal"
                     android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:text="Valor do serviço"
+                        android:textAlignment="textEnd"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/textValorDoServicoPrestadoDetalhe"
@@ -73,23 +86,13 @@
                         android:layout_marginRight="2dp"
                         android:layout_marginBottom="2dp"
                         android:layout_weight="1"
+                        android:paddingLeft="3dp"
                         android:text="Valor do serviço prestado"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorTituloPrimary"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/colorSecondary"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/textValorSerCobradoServicoPrestadoDetalhe"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="2dp"
-                        android:layout_marginRight="2dp"
-                        android:layout_marginBottom="2dp"
-                        android:layout_weight="1"
-                        android:text="Valor s ser cobrado do serviço"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -99,28 +102,24 @@
                 android:id="@+id/linearLayout5"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="@color/colorBackgroundPrimary"
+
+                android:background="@color/colorBackgroundFundo"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recycleViewItensServicosPrestados"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="2dp"
                     android:layout_marginTop="0dp"
                     android:layout_marginRight="2dp"
                     android:layout_marginBottom="2dp"
-                    android:background="@color/colorBackgroundPrimary"
+                    android:background="@color/colorBackgroundFundo"
                     android:clipToPadding="false"
                     android:scrollbars="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -130,4 +129,40 @@
             </LinearLayout>
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
+
+    <ImageButton
+        android:id="@+id/imgButtonSalvarServicoPrestado"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="50dp"
+        android:background="@color/colorBackgroundFundoFundoBotao"
+        android:src="@drawable/baseline_ballot_white_48"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_view_servico_prestado"
+        app:layout_constraintVertical_bias="0.99" />
+
+    <TextView
+        android:id="@+id/textValorSerCobradoServicoPrestadoDetalhe"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/colorButtonFundoServico"
+        android:paddingTop="5dp"
+        android:textAlignment="center"
+        android:textColor="@color/colorTextoPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgButtonSalvarServicoPrestado" />
+
 </android.support.constraint.ConstraintLayout>
