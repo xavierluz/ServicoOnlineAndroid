@@ -18,6 +18,8 @@ import com.xavierluz.servicoonline.R;
 import com.xavierluz.servicoonline.item.servico.ItemServico;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ServicoPrestadoDetalheAdpater  extends RecyclerView.Adapter{
     private List<ItemServico> itemServicos;
@@ -32,6 +34,7 @@ public class ServicoPrestadoDetalheAdpater  extends RecyclerView.Adapter{
     private Double valorTotalDoDesconto = 0.0;
     private Double Desconto = 0.0;
     private Integer contadorDiminuirQuantidade = 0;
+    private RecyclerView recyclerView;
     public ServicoPrestadoDetalheAdpater(List<ItemServico> itemServicos,Context context){
         super();
         this.context = context;
@@ -48,6 +51,7 @@ public class ServicoPrestadoDetalheAdpater  extends RecyclerView.Adapter{
         viewServicoPrestado = viewListaItensServico.findViewById(R.id.activity_item_servico_prestado_detalhe);
         textValorDoServicoPrestadoDetalhe =(TextView) viewServicoPrestado.findViewById(R.id.textValorDoServicoPrestadoDetalhe);
         textValorSerCobradoServicoPrestadoDetalhe = (TextView) viewServicoPrestado.findViewById(R.id.textValorSerCobradoServicoPrestadoDetalhe);
+        recyclerView = (RecyclerView) viewListaItensServico.findViewById(R.id.recycleViewItensServicosPrestados);
         return servicoItemPrestadoViewHolder;
     }
 
@@ -61,25 +65,26 @@ public class ServicoPrestadoDetalheAdpater  extends RecyclerView.Adapter{
         servicoItemPrestadoViewHolder.textPrecoDoItem.setText(FechamentoAdapter.formatarMoeda(itemServico.getPrecoItemServico()));
         servicoItemPrestadoViewHolder.textQuantidadeDoItem.setText(itemServico.getQuantidadeItemServico().toString());
 
-        if(itemServico.getValorDoDesconto() < 1){
+        if(itemServico.getValorDoDesconto() == null){
             servicoItemPrestadoViewHolder.textValorTotalCobrado.setText(FechamentoAdapter.formatarMoeda(calcularValorDoItem(itemServico.getQuantidadeItemServico(), itemServico.getPrecoItemServico())));
         }else{
             servicoItemPrestadoViewHolder.textValorTotalCobrado.setText(FechamentoAdapter.formatarMoeda(itemServico.getValorTotalDoItem()));
         }
 
-        servicoItemPrestadoViewHolder.textValorDoDesconto.setText(Double.toString(itemServico.getValorDoDesconto()));
+        if(itemServico.getValorDoDesconto() !=null){
+            servicoItemPrestadoViewHolder.textValorDoDesconto.setText(Double.toString(itemServico.getValorDoDesconto()));
+        }
+
         servicoItemPrestadoViewHolder.textValorTotalDoItem.setText(FechamentoAdapter.formatarMoeda(calcularValorDoItem(itemServico.getQuantidadeItemServico(), itemServico.getPrecoItemServico())));
         valorTotalDoservico += FechamentoAdapter.formatoDecimalSemTipoMoeda(servicoItemPrestadoViewHolder.textValorTotalDoItem.getText().toString());
         textValorDoServicoPrestadoDetalhe.setText(FechamentoAdapter.formatarMoeda(valorTotalDoservico));
         valorTotalDoDesconto += FechamentoAdapter.formatoDecimalSemTipoMoeda(servicoItemPrestadoViewHolder.textValorTotalCobrado.getText().toString());
-        if(textValorSerCobradoServicoPrestadoDetalhe.getText().length() == 0)
-            textValorSerCobradoServicoPrestadoDetalhe.setText(FechamentoAdapter.formatarMoeda(valorTotalDoservico - Desconto));
-        else {
-            //Toast.makeText(this.context, "Desconto " + Desconto.toString(), Toast.LENGTH_SHORT).show();
 
-            //Toast.makeText(this.context, "valorTotalDoDesconto " + valorTotalDoDesconto.toString(), Toast.LENGTH_SHORT).show();
-            textValorSerCobradoServicoPrestadoDetalhe.setText(FechamentoAdapter.formatarMoeda(valorTotalDoDesconto));
-        }
+        Toast.makeText(this.context, "Selected Item: " + servicoItemPrestadoViewHolder.textDesconto.getText().toString(), Toast.LENGTH_SHORT).show();
+        valorTotalDoDesconto -= FechamentoAdapter.formatoDecimalSemTipoMoeda(servicoItemPrestadoViewHolder.textDesconto.getText().toString().replace("Valor desconto","0"));
+
+        //textValorSerCobradoServicoPrestadoDetalhe.setText(FechamentoAdapter.formatarMoeda(valorTotalDoDesconto ));
+
 
 
         servicoItemPrestadoViewHolder.rdoDescontoPorcetagem.setChecked(itemServico.isDescontoPorcetagem());
@@ -204,9 +209,13 @@ public class ServicoPrestadoDetalheAdpater  extends RecyclerView.Adapter{
                    servicoItemPrestadoViewHolder.textDesconto.setText(FechamentoAdapter.formatarMoeda(_Desconto));
 
                    Desconto += _Desconto;
+
+               }else{
+                   servicoItemPrestadoViewHolder.textDesconto.setText(FechamentoAdapter.formatarMoeda(0.0));
                }
             }
         });
+        /*
         servicoItemPrestadoViewHolder.imgButtonDeletarItemServico.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -222,6 +231,8 @@ public class ServicoPrestadoDetalheAdpater  extends RecyclerView.Adapter{
                 alertDialog.show();
             }
         });
+        */
+        calcularTotalDesconto();
 
     }
 
@@ -277,6 +288,7 @@ public class ServicoPrestadoDetalheAdpater  extends RecyclerView.Adapter{
         //inflamos o layout alerta.xml na view
         View view = layoutInflater.inflate(R.layout.dialogo_confirmar, null);
 //definimos para o botão do layout um clickListener
+       /*
         view.findViewById(R.id.imgButtonDeletarItemServico).setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
                 //exibe um Toast informativo.
@@ -291,6 +303,7 @@ public class ServicoPrestadoDetalheAdpater  extends RecyclerView.Adapter{
         builder.setView(view);
         alertDialog = builder.create();
         alertDialog.show();
+        */
     }
 
     private Double calcularValorDoItem(Integer quantidade, Double valor){
@@ -312,5 +325,27 @@ public class ServicoPrestadoDetalheAdpater  extends RecyclerView.Adapter{
 
     private Double calcularPorcetagem(Double porcetagem, Double valor){
         return (valor * porcetagem) / 100;
+    }
+    private boolean verificarDecimal( String texto ) {
+        if (Pattern.matches ("(\\d)*,\\d{2}+",texto)) {
+            return true;
+        }
+        return false;
+    }
+
+    private void calcularTotalDesconto(){
+        Double desconto= 0.0;
+        Double _valorDoServico = 0.0;
+
+        for (int i = recyclerView.getChildCount() - 1; i >= 0; i--) {
+            final View view = recyclerView.getChildAt(i);
+            RecyclerView.ViewHolder viewHolder = recyclerView.getChildViewHolder(view);
+            if (viewHolder != null && viewHolder instanceof ServicoItemPrestadoViewHolder) {
+                final ServicoItemPrestadoViewHolder itemServicoViewHolder = (ServicoItemPrestadoViewHolder) viewHolder;
+                desconto += FechamentoAdapter.formatoDecimalSemTipoMoeda(itemServicoViewHolder.textDesconto.getText().toString().replace("Valor desconto","0"));
+                _valorDoServico =  FechamentoAdapter.formatoDecimalSemTipoMoeda(textValorDoServicoPrestadoDetalhe.getText().toString());
+            }
+        }
+        textValorSerCobradoServicoPrestadoDetalhe.setText(FechamentoAdapter.formatarMoeda(_valorDoServico - desconto));
     }
 }

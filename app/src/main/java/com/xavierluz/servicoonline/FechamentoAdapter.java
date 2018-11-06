@@ -132,7 +132,10 @@ public class FechamentoAdapter extends RecyclerView.Adapter {
 
     public static String formatarMoeda(Double valor){
         NumberFormat numberFormat =   NumberFormat.getCurrencyInstance();
-        return numberFormat.format(valor);
+        if(valor !=null){
+            return numberFormat.format(valor);
+        }
+        return "";
     }
     public static String formatarDecimal(Double valor){
         DecimalFormat decimalFormat = new DecimalFormat("0.##");

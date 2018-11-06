@@ -16,11 +16,11 @@ public class ItemServico {
     private boolean ativo;
     private String status;
     private Integer quantidadeItemServico = 0;
-    private double valorDoItemServico =0.0;
-    private double valorDoDesconto = 0.0;
+    private Double valorDoItemServico =0.0;
+    private Double valorDoDesconto =null;
     private boolean descontoPorcetagem = false;
-    private double valorTotalDoItem;
-    private double Desconto =0.0;
+    private Double valorTotalDoItem;
+    private Double Desconto =0.0;
     public ItemServico(){
 
     }
@@ -30,11 +30,11 @@ public class ItemServico {
     //}
 
 
-    public double getDesconto() {
+    public Double getDesconto() {
         return Desconto;
     }
 
-    public void setDesconto(double desconto) {
+    public void setDesconto(Double desconto) {
         Desconto = desconto;
     }
 
@@ -46,27 +46,27 @@ public class ItemServico {
         this.descontoPorcetagem = descontoPorcetagem;
     }
 
-    public double getValorDoItemServico() {
+    public Double getValorDoItemServico() {
         return valorDoItemServico;
     }
 
-    public void setValorDoItemServico(double valorDoItemServico) {
+    public void setValorDoItemServico(Double valorDoItemServico) {
         this.valorDoItemServico = valorDoItemServico;
     }
 
-    public double getValorDoDesconto() {
+    public Double getValorDoDesconto() {
         return valorDoDesconto;
     }
 
-    public void setValorDoDesconto(double valorDoDesconto) {
+    public void setValorDoDesconto(Double valorDoDesconto) {
         this.valorDoDesconto = valorDoDesconto;
     }
 
-    public double getValorTotalDoItem() {
+    public Double getValorTotalDoItem() {
         return valorTotalDoItem;
     }
 
-    public void setValorTotalDoItem(double valorTotalDoItem) {
+    public void setValorTotalDoItem(Double valorTotalDoItem) {
         this.valorTotalDoItem = valorTotalDoItem;
     }
 
@@ -114,7 +114,7 @@ public class ItemServico {
         this.descricaoItemServico = descricaoItemServico;
     }
 
-    public double getPrecoItemServico() {
+    public Double getPrecoItemServico() {
         return precoItemServico;
     }
 

@@ -135,9 +135,9 @@ public class ServicoPrestadoServices {
         layoutManager = new LinearLayoutManager(context);
         this.recyclerView.setLayoutManager(layoutManager);
         this.recyclerView.setItemAnimator(new DefaultItemAnimator());
-        this.recyclerView.addItemDecoration(new SimpleDividerItemDecoration(
+       /* this.recyclerView.addItemDecoration(new SimpleDividerItemDecoration(
                 context
-        ));
+        ));*/
 
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(context,
                 LinearLayoutManager.VERTICAL, false);
