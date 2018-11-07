@@ -145,6 +145,7 @@ public class ServicoPrestadoDetalheAdpater  extends RecyclerView.Adapter{
                     textValorDoServicoPrestadoDetalhe.setText(FechamentoAdapter.formatarMoeda(valorDoServicoPrestadoDetalhe - _valor));
                     Desconto = (valorDoServicoPrestadoDetalhe - _valor) - _valorDesconto;
                     textValorSerCobradoServicoPrestadoDetalhe.setText(FechamentoAdapter.formatarMoeda(Desconto));
+                    //servicoItemPrestadoViewHolder.textDesconto.setText(FechamentoAdapter.formatarMoeda( FechamentoAdapter.formatoDecimalSemTipoMoeda(servicoItemPrestadoViewHolder.textDesconto.getText().toString()) + Desconto));
                 }
                 contadorDiminuirQuantidade -=1;
             }
