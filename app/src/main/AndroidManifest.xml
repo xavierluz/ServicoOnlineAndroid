@@ -27,7 +27,8 @@
         <activity android:name=".ItemServicoActivity" />
         <activity android:name=".ListaItemServicoActivity" />
         <activity android:name=".CadastroUsuarioActivity" />
-        <activity android:name=".DetalheServicoPrestadoActivity"></activity>
+        <activity android:name=".DetalheServicoPrestadoActivity" />
+        <activity android:name=".PagamentoActivity"></activity>
     </application>
 
 </manifest>

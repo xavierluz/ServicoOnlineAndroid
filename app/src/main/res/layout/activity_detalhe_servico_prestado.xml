@@ -8,45 +8,49 @@
     android:theme="@style/AppTheme"
     android:id="@+id/activity_item_servico_prestado_detalhe"
     tools:context=".DetalheServicoPrestadoActivity">
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbarServicoPrestadoDetalhe"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:layout_scrollFlags="scroll|enterAlways"
-        android:theme="@style/AppTheme"
+        android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
+        android:theme="@style/AppTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_scrollFlags="scroll|enterAlways"
         app:titleTextColor="@color/colorTextoPrimary" />
 
     <android.support.v7.widget.CardView
         android:id="@+id/card_view_servico_prestado"
         android:layout_width="0dp"
-        android:layout_height="394dp"
+        android:layout_height="428dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="70dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="16dp"
         android:background="@color/colorBackgroundPrimary"
         android:theme="@style/AppTheme"
         app:layout_constraintBottom_toTopOf="@+id/imgButtonSalvarServicoPrestado"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarServicoPrestadoDetalhe">
+        app:layout_constraintTop_toBottomOf="@+id/toolbarServicoPrestadoDetalhe"
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorBackgroundPrimary">
+            android:layout_marginTop="8dp"
+            android:background="@color/colorBackgroundFundo">
 
             <LinearLayout
                 android:id="@+id/linearLayout4"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="1dp"
-                android:layout_marginTop="2dp"
                 android:layout_marginEnd="1dp"
-                android:background="@color/colorBackgroundFundoFundoBotao"
+                android:background="@color/colorBackgroundFundo"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -66,7 +70,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorBackgroundFundoFundoBotao"
+                    android:background="@color/colorBackgroundFundo"
                     android:gravity="center_horizontal"
                     android:orientation="horizontal">
 
@@ -87,12 +91,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="2dp"
                         android:layout_marginRight="2dp"
-                        android:layout_marginBottom="2dp"
+                        android:layout_marginBottom="1dp"
                         android:layout_weight="1"
                         android:paddingLeft="3dp"
                         android:text="Valor do serviço prestado"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/colorSecondary"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/colorPrimary"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
@@ -104,8 +108,12 @@
             <LinearLayout
                 android:id="@+id/linearLayout5"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="361dp"
 
+                android:layout_marginLeft="1dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginBottom="1dp"
                 android:background="@color/colorBackgroundFundo"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal"
@@ -117,11 +125,7 @@
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recycleViewItensServicosPrestados"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginRight="2dp"
-                    android:layout_marginBottom="2dp"
+                    android:layout_height="match_parent"
                     android:background="@color/colorBackgroundFundo"
                     android:clipToPadding="false"
                     android:scrollbars="vertical"
@@ -136,36 +140,15 @@
     <ImageButton
         android:id="@+id/imgButtonSalvarServicoPrestado"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="10dp"
         android:background="@color/colorBackgroundFundoFundoBotao"
         android:src="@drawable/baseline_ballot_white_48"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card_view_servico_prestado"
-        app:layout_constraintVertical_bias="0.99" />
-
-    <TextView
-        android:id="@+id/textValorSerCobradoServicoPrestadoDetalhe"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@color/colorButtonFundoServico"
-        android:paddingTop="5dp"
-        android:textAlignment="center"
-        android:textColor="@color/colorTextoPrimary"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgButtonSalvarServicoPrestado" />
+        app:layout_constraintTop_toBottomOf="@+id/card_view_servico_prestado" />
 
 </android.support.constraint.ConstraintLayout>

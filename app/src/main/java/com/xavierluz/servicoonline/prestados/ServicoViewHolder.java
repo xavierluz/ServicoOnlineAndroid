@@ -9,7 +9,6 @@ import com.xavierluz.servicoonline.R;
 public class ServicoViewHolder extends RecyclerView.ViewHolder{
     public final TextView textDescricaoServicoPrestadoDetalhe;
     public final TextView textValorDoServicoPrestadoDetalhe;
-    public final TextView textValorSerCobradoServicoPrestadoDetalhe;
 
     public ServicoViewHolder(View itemView) {
         super(itemView);
@@ -17,6 +16,6 @@ public class ServicoViewHolder extends RecyclerView.ViewHolder{
 
         this.textDescricaoServicoPrestadoDetalhe = (TextView) itemView.findViewById(R.id.textDescricaoServicoPrestadoDetalhe);
         this.textValorDoServicoPrestadoDetalhe = (TextView) itemView.findViewById(R.id.textValorDoServicoPrestadoDetalhe);
-        this.textValorSerCobradoServicoPrestadoDetalhe = (TextView) itemView.findViewById(R.id.textValorSerCobradoServicoPrestadoDetalhe);
+
     }
 }

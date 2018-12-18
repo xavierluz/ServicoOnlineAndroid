@@ -147,9 +147,33 @@ public class FechamentoAdapter extends RecyclerView.Adapter {
         if (valor.trim().length() == 0) {
             valor = "0.0";
         }
-        String str = valor.replace("R$", "").replace(".","").replace(",", ".");
+        String str = valor.replace("R$", "").replace(".","").replace(",", ".").replace("%","");
         Log.i("valorDouble:", str);
         return Double.parseDouble(str);
+
+
+    }
+    public static double formatoDecimalSemTipoPorcetagem(String valor) {
+
+        if (valor.trim().length() == 0) {
+            valor = "0.0";
+        }
+        String str = valor.replace("%", "").replace(".","").replace(",", ".");
+        Log.i("valorDouble:", str);
+        return Double.parseDouble(str);
+
+
+    }
+    public static BigDecimal formatBigDecimalSemTipoMoeda(String valor) {
+
+        if (valor.trim().length() == 0) {
+            valor = "0.0";
+        }
+        String str = valor.replace("R$", "").replace(".","").replace(",", ".");
+        Log.i("valorDouble:", str);
+        return new BigDecimal(str).setScale(
+                2, BigDecimal.ROUND_FLOOR).divide(new BigDecimal(100), BigDecimal.ROUND_HALF_EVEN
+        );
 
 
     }

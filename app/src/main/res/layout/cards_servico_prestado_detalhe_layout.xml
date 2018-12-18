@@ -26,7 +26,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="4dp"
         android:layout_marginEnd="1dp"
         android:padding="0dp"
         android:paddingStart="0dp"
@@ -39,7 +38,7 @@
         app:cardCornerRadius="3dp"
         app:cardElevation="1dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -47,13 +46,24 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
             android:gravity="center_vertical"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textViewServicoPrestadoId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:visibility="invisible" />
+            <TextView
+                android:id="@+id/textViewPrestadoServicoId"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:visibility="invisible" />
+            <TextView
+                android:id="@+id/textViewItemServicoId"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
                 android:visibility="invisible" />
 
             <TextView
@@ -71,7 +81,7 @@
             <TextView
                 android:id="@+id/textItemDescricaoServicoPrestadorDetalhe"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="55dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="0dp"
                 android:layout_marginLeft="0dp"
@@ -156,30 +166,6 @@
                 android:gravity="left"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginRight="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:text="Valor desconto"
-                    android:textAlignment="viewStart"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textValorDoDescontoDetalhe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="11dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginRight="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:text="Valor desconto"
-                    android:textAlignment="viewStart"
-                    android:textColor="@color/colorSecondary"
-                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -189,30 +175,6 @@
                 android:gravity="left"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginRight="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:text="Valor cobrado"
-                    android:textAlignment="viewStart"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textValorItemCobradoDetalhe"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="19dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginRight="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:text="Valor cobrado"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -220,38 +182,41 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="2dp"
-                android:background="@color/colorBackgroundFundo"
-                android:gravity="center"
+                android:background="@color/colorBackgroundFundoFundoBotao"
+                android:gravity="center_vertical|center_horizontal"
                 android:orientation="horizontal">
 
                 <ImageButton
                     android:id="@+id/imgButtonAdionarItemDetalhe"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="2dp"
                     android:layout_marginTop="2dp"
-                    android:layout_marginRight="32dp"
+                    android:layout_marginRight="2dp"
                     android:layout_marginBottom="2dp"
-                    android:background="@color/colorAccent"
-                    app:srcCompat="@drawable/baseline_add_circle_white_24" />
+                    android:background="@drawable/baseline_add_circle_black_48" />
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="Quantidade:" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:text="Quantidade:"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/textQuantidadeItemServico"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginLeft="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="2dp"
                     android:layout_marginTop="2dp"
-                    android:layout_marginEnd="0dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="2dp"
                     android:layout_marginBottom="2dp"
-                    android:paddingRight="10dp"
+                    android:paddingRight="2dp"
                     android:text="Quantidade"
                     android:textAlignment="center"
                     android:textColor="@color/colorPrimaryDark"
@@ -260,91 +225,23 @@
                 <ImageButton
                     android:id="@+id/imgButtonDiminuirItemDetalhe"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="32dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginRight="2dp"
                     android:layout_marginBottom="2dp"
-                    android:background="@color/colorAccent"
-                    app:srcCompat="@drawable/baseline_remove_circle_white_24" />
+                    android:background="@drawable/baseline_remove_circle_white_48" />
             </LinearLayout>
 
-
-            <android.support.constraint.ConstraintLayout
+            <ImageButton
+                android:id="@+id/imgButtonCancelarItem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:background="@color/colorBackgroundFundo"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="2dp"
+                android:background="@color/colorBackgroundFundoFundoBotao"
+                android:src="@drawable/baseline_cancel_white_48" />
 
-                <RadioButton
-                    android:id="@+id/rdoDescontoValorDetalhe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:button="@android:drawable/checkbox_on_background"
-                    android:checked="true"
-                    android:focusableInTouchMode="true"
-                    android:text="R$"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/rdoDescontoPorcetagemDetalhe"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <RadioButton
-                    android:id="@+id/rdoDescontoPorcetagemDetalhe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:button="@android:drawable/checkbox_off_background"
-                    android:checked="false"
-                    android:text="%"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageButton
-                    android:id="@+id/imgButtonDetalhesServicoPrestado"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:background="@color/colorButtonFundoServico"
-                    android:textAlignment="center"
-                    android:textDirection="ltr"
-
-                    android:tooltipText="Corfimar o desconto"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textValorDoDescontoDoItem"
-                    app:srcCompat="@drawable/baseline_check_white_48" />
-
-                <EditText
-                    android:id="@+id/textValorDoDescontoDoItem"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="28dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:ems="10"
-                    android:hint="Digite o desconto"
-                    android:inputType="textPersonName"
-                    android:textAlignment="textEnd"
-                    android:textColor="@color/colorTextoPrimary"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/rdoDescontoValorDetalhe"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </android.support.constraint.ConstraintLayout>
 
         </LinearLayout>
     </android.support.v7.widget.CardView>

@@ -10,6 +10,7 @@ public class ItemServico {
 
     private String id;
     private String servicoId;
+    private String servicoPrestadoId;
     private String nomeItemServico;
     private String descricaoItemServico;
     private double precoItemServico =0.0;
@@ -29,6 +30,14 @@ public class ItemServico {
     //    return valorDoServico;
     //}
 
+
+    public String getServicoPrestadoId() {
+        return servicoPrestadoId;
+    }
+
+    public void setServicoPrestadoId(String servicoPrestadoId) {
+        this.servicoPrestadoId = servicoPrestadoId;
+    }
 
     public Double getDesconto() {
         return Desconto;

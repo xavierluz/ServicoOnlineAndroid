@@ -21,5 +21,6 @@
     <color name="colorBackgroundFundoFundoBotao">#fcaf3d</color>
     <color name="colorBackgroundBotaoAcaoActivityPrimary">#b7cbd7</color>
     <color name="colorBackgroundDetalhesValores">#e7e5e5</color>
+    <color name="colorBackgroundAlertDialog">#afb8e1</color>
 </resources>
 

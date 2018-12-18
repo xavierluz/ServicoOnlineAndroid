@@ -1,6 +1,5 @@
 package com.xavierluz.servicoonline.prestados;
 
-import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,9 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,7 +14,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.xavierluz.servicoonline.DetalheServicoPrestadoActivity;
 import com.xavierluz.servicoonline.PrestadoAdapter;
 import com.xavierluz.servicoonline.R;
 import com.xavierluz.servicoonline.SimpleDividerItemDecoration;
@@ -28,7 +23,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ServicoPrestadoServices {
     private FirebaseDatabase database;
@@ -107,6 +104,63 @@ public class ServicoPrestadoServices {
         servicoPrestado.setServicoId(null);
         refServicos.push().setValue(servicoPrestado);
     }
+    public void Atualizar(String servicosPrestadoId,final Double valorDoServicoPrestado, final List<ItemServico> itemServicos){
+        final DatabaseReference refServicosPrestados = database.getReference("servicosPrestado")
+                .child(servicosPrestadoId);
+        Query query = refServicosPrestados.orderByChild("dataServicoCadastrado");
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()) {
+                    Servico servico = null;
+                    ServicoPrestado servicoPrestado = dataSnapshot.getValue(ServicoPrestado.class);
+                    servicoPrestado.setId(dataSnapshot.getKey());
+                    servicoPrestado.setStatus("PAGAMENTO");
+                    servicoPrestado.setServicoValor(valorDoServicoPrestado);
+                    final Map<String, Object> servicoPrestadoUpdate = new HashMap<>();
+
+                    DataSnapshot dataServicoSnapshot = dataSnapshot.child("servico");
+
+                    if(dataServicoSnapshot.exists()) {
+                        servico = dataServicoSnapshot.getValue(Servico.class);
+                        final List<ItemServico> itemServicosUpdate = new ArrayList<ItemServico>();
+                        for (ItemServico itemServico : itemServicos) {
+                            Query queryItemServico = refServicosPrestados.child("servico").child("itemServicos").orderByChild("id").equalTo(itemServico.getId());
+                            //DataSnapshot dataItemSnapshot = dataSnapshot.child("servico").child("itemServicos").child(itemServico.getId());
+                            queryItemServico.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataItemSnapshot) {
+                                    if (dataItemSnapshot.exists()) {
+
+                                        ItemServico _itemServico = dataItemSnapshot.getValue(ItemServico.class);
+                                        itemServicosUpdate.add(_itemServico);
+
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
+
+                            servico.setItemServicos(itemServicosUpdate);
+                        }
+                    }
+                    servicoPrestado.setServico(servico);
+                    servicoPrestadoUpdate.put(dataSnapshot.getKey(),servicoPrestado);
+                    refServicosPrestados.updateChildren(servicoPrestadoUpdate);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
     public void Salvar(ServicoPrestado servicoPrestado, List<ItemServico> itemServicos){
         this.servicoPrestado = servicoPrestado;
         this.itemServicos = itemServicos;
@@ -143,7 +197,7 @@ public class ServicoPrestadoServices {
                 LinearLayoutManager.VERTICAL, false);
         this.recyclerView.setLayoutManager(linearLayoutManager);
         this.recyclerView.setAdapter(adapterDetalhe);
-        //adapterDetalhe.notifyDataSetChanged();
+        adapterDetalhe.notifyDataSetChanged();
     }
     public PrestadoAdapter getAdapter() {
         return this.adapter;
@@ -152,8 +206,8 @@ public class ServicoPrestadoServices {
         return this.adapterDetalhe;
     }
     public void setServicosPrestado( ){
-
-        Query query = this.refServicos.orderByChild("nome");
+        DatabaseReference refServicosPrestados =  database.getReference("servicosPrestado");
+        Query query = refServicosPrestados.orderByChild("nome");
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -197,7 +251,7 @@ public class ServicoPrestadoServices {
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
                 if(dataSnapshot.exists()) {
                     ServicoPrestado servicoPrestado = dataSnapshot.getValue(ServicoPrestado.class);
-                    servicoPrestado.setServicoId(dataSnapshot.getKey());
+                    servicoPrestado.setId(dataSnapshot.getKey());
                     for(ServicoPrestado _servicoPrestado : servicoPrestados){
                         if(servicoPrestado.getId().equals(_servicoPrestado.getId())){
                             servicoPrestados.remove(_servicoPrestado);
@@ -268,7 +322,7 @@ public class ServicoPrestadoServices {
         });
     }
 
-    public void setServicosPrestadoDetalhe(String servicosPrestadoId){
+    public void setServicosPrestadoDetalhe(final String servicosPrestadoId){
         DatabaseReference refServicosPrestados = database.getReference("servicosPrestado")
                 .child(servicosPrestadoId).child("servico").child("itemServicos");
         Log.i("SevicoPrestadoId",servicosPrestadoId);
@@ -281,11 +335,34 @@ public class ServicoPrestadoServices {
                 if(dataSnapshot.exists()){
 
                         for (DataSnapshot dataItem : dataSnapshot.getChildren()) {
-                            Log.i("SevicoPrestadoSnapshot", dataItem.getValue().toString());
-                            ItemServico itemServico = dataItem.getValue(ItemServico.class);
+                            Log.i("SevicoPrestado.Snapshot", dataItem.getValue().toString());
+                            final ItemServico itemServico = dataItem.getValue(ItemServico.class);
                             Log.i("getNomeItemServico", itemServico.getNomeItemServico());
+                            itemServico.setServicoPrestadoId(servicosPrestadoId);
+                            DatabaseReference refServicos = database.getReference("servicosPrestado")
+                                    .child(servicosPrestadoId).child("servico");
+                            Query queryServico = refServicos.orderByKey();
+                            queryServico.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshotServico) {
+                                    if(dataSnapshotServico.exists()) {
+
+                                        Servico servico = dataSnapshotServico.getValue(Servico.class);
+                                        itemServico.setServicoId(servico.getId());
+
+                                    }
+
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
+
                             itemServicos.add(itemServico);
                         }
+                       // itemServicos.add(new ItemServico());
                         adapterDetalhe = new ServicoPrestadoDetalheAdpater(itemServicos, context);
                         setRecyclerViewDetalhe();
 
